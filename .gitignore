@@ -1,1 +1,23 @@
-implementation_plan.md
+# Dependencies
+node_modules/
+dist/
+.env
+.env.local
+.env.*.local
+
+# Build artifacts
+*.tsbuildinfo
+
+# Editor
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Private planning docs
+docs/
