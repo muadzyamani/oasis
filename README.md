@@ -63,7 +63,7 @@ src/
 ## Phase Roadmap
 
 - **Phase 1** ✅ — Project foundations, design system, store architecture
-- **Phase 2** 🔜 — Live animated Oasis scene + functional Pomodoro timer
-- **Phase 3** — Audio system, overlays, onboarding, streaks
+- **Phase 2** ✅ — Live animated Oasis scene + functional Pomodoro timer
+- **Phase 3** 🔜 — Audio system, overlays, onboarding, streaks
 - **Phase 4** — Cloud sync, themes, seasonal events
 - **Phase 5** — Shared focus rooms, companion, AI environments
