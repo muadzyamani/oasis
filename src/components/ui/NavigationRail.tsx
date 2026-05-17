@@ -48,7 +48,7 @@ export function NavigationRail({ onStatsClick, onSettingsClick }: NavigationRail
           onClick={item.onClick}
           className="
             w-10 h-10 rounded-full flex items-center justify-center
-            text-[var(--color-text-on-dark-muted)] text-lg
+            text-[var(--color-text-on-dark)] text-lg
             transition-all duration-300
             hover:text-[var(--color-lantern-gold)]
             hover:bg-[var(--glass-bg)]
