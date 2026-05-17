@@ -2,19 +2,27 @@ import { useState, useEffect } from 'react'
 import { computeAtmosphere } from '@/engines/ambientEngine'
 import type { AtmosphereState } from '@/types/growth.types'
 import { useTimerStore } from '@/stores/timerStore'
+import { useSettingsStore } from '@/stores/settingsStore'
 
 /* ==========================================================================
    useAmbient
-   Polls the real clock every 60s and reads session state.
-   Returns AtmosphereState for the scene to consume.
+   Polls real clock every 30s (minute-level precision for sun/moon arc).
+   Reads sunrise/sunset from settings store.
    ========================================================================== */
 
+function getNow() {
+  const d = new Date()
+  return { hour: d.getHours(), minute: d.getMinutes() }
+}
+
 export function useAmbient(): AtmosphereState {
-  const [hour, setHour] = useState(() => new Date().getHours())
+  const [time, setTime] = useState(getNow)
   const { status, timeRemainingSeconds, sessionType, config } = useTimerStore()
+  const { sunriseHour, sunsetHour } = useSettingsStore()
 
   useEffect(() => {
-    const id = setInterval(() => setHour(new Date().getHours()), 60_000)
+    // Poll every 30s — fine-grained enough for smooth sun/moon movement
+    const id = setInterval(() => setTime(getNow()), 30_000)
     return () => clearInterval(id)
   }, [])
 
@@ -29,5 +37,13 @@ export function useAmbient(): AtmosphereState {
   const sessionProgress =
     totalSeconds > 0 ? (totalSeconds - timeRemainingSeconds) / totalSeconds : 0
 
-  return computeAtmosphere(hour, sessionActive, sessionProgress, isBreak)
+  return computeAtmosphere(
+    time.hour,
+    time.minute,
+    sunriseHour,
+    sunsetHour,
+    sessionActive,
+    sessionProgress,
+    isBreak,
+  )
 }

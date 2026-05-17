@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { getTimeOfDay } from '@/types/growth.types'
 import type { TimeOfDay } from '@/types/growth.types'
 
 /* ==========================================================================
@@ -90,13 +89,26 @@ const STARS = Array.from({ length: 60 }, (_, i) => ({
 }))
 
 export function ScenePlaceholder() {
-  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>(() =>
-    getTimeOfDay(new Date().getHours()),
-  )
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>(() => {
+    const h = new Date().getHours()
+    if (h >= 5 && h < 8) return 'dawn'
+    if (h >= 8 && h < 17) return 'morning'
+    if (h >= 17 && h < 19) return 'afternoon'
+    if (h >= 19 && h < 21) return 'dusk'
+    return 'night'
+  })
 
   // Update time of day every minute
   useEffect(() => {
-    const update = () => setTimeOfDay(getTimeOfDay(new Date().getHours()))
+    const update = () => {
+      const h = new Date().getHours()
+      let tod: TimeOfDay = 'night'
+      if (h >= 5 && h < 8) tod = 'dawn'
+      else if (h >= 8 && h < 17) tod = 'morning'
+      else if (h >= 17 && h < 19) tod = 'afternoon'
+      else if (h >= 19 && h < 21) tod = 'dusk'
+      setTimeOfDay(tod)
+    }
     const id = setInterval(update, 60_000)
     return () => clearInterval(id)
   }, [])

@@ -20,20 +20,20 @@ export function OasisScene({ atmosphere, oasis, newElementId, preview, previewPr
 
   return (
     <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
-      <SkyLayer timeOfDay={timeOfDay} />
+      {/* Layer 1: Continuous sky — sun arc, moon phase, stars */}
+      <SkyLayer atmosphere={atmosphere} />
+
+      {/* Layer 2: Ground (still uses 5-bucket timeOfDay for colour) */}
       <GroundLayer timeOfDay={timeOfDay} />
+
+      {/* Layer 3: Water pool */}
       <WaterLayer timeOfDay={timeOfDay} sessionActive={sessionActive} tier={oasis.tier} />
-      <FloraLayer
-        elements={oasis.elements}
-        newElementId={newElementId}
-        preview={preview}
-        previewProgress={previewProgress}
-      />
-      <AtmosphereLayer
-        sessionActive={sessionActive}
-        sessionProgress={sessionProgress}
-        isBreak={isBreak}
-      />
+
+      {/* Layer 4: Flora elements */}
+      <FloraLayer elements={oasis.elements} newElementId={newElementId} preview={preview} previewProgress={previewProgress} />
+
+      {/* Layer 5: Atmosphere (dust, focus glow, particles) */}
+      <AtmosphereLayer sessionActive={sessionActive} sessionProgress={sessionProgress} isBreak={isBreak} />
     </div>
   )
 }
