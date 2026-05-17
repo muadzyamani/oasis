@@ -44,9 +44,9 @@ export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: Atm
       <motion.div
         style={{
           position: 'absolute',
-          bottom: '20%',
+          bottom: '28%',
           left: '50%',
-          transform: 'translateX(-50%)',
+          transform: 'translate(-50%, 50%)',
           width: '60%',
           height: 120,
           background: 'radial-gradient(ellipse at center, rgba(240,192,96,1) 0%, transparent 70%)',

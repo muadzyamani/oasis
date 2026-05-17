@@ -12,7 +12,7 @@ export function GroundLayer({ timeOfDay }: GroundLayerProps) {
   return (
     <>
       {/* Far dune silhouettes */}
-      <div className="absolute left-0 right-0" style={{ top: '55%', zIndex: 2 }}>
+      <div className="absolute left-0 right-0" style={{ bottom: '28%', zIndex: 2, marginBottom: -1 }}>
         <motion.svg
           viewBox="0 0 1440 120" preserveAspectRatio="none"
           style={{ width: '100%', height: 120, display: 'block' }}
