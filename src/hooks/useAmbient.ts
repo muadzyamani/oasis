@@ -3,6 +3,7 @@ import { computeAtmosphere } from '@/engines/ambientEngine'
 import type { AtmosphereState } from '@/types/growth.types'
 import { useTimerStore } from '@/stores/timerStore'
 import { useSettingsStore } from '@/stores/settingsStore'
+import { useDevStore } from '@/stores/devStore'
 
 /* ==========================================================================
    useAmbient
@@ -16,13 +17,17 @@ function getNow() {
 }
 
 export function useAmbient(): AtmosphereState {
-  const [time, setTime] = useState(getNow)
+  const [realTime, setRealTime] = useState(getNow)
   const { status, timeRemainingSeconds, sessionType, config } = useTimerStore()
   const { sunriseHour, sunsetHour } = useSettingsStore()
+  const { timeOverride } = useDevStore()
+
+  // Use override time in dev, real clock in prod
+  const time = timeOverride ?? realTime
 
   useEffect(() => {
     // Poll every 30s — fine-grained enough for smooth sun/moon movement
-    const id = setInterval(() => setTime(getNow()), 30_000)
+    const id = setInterval(() => setRealTime(getNow()), 30_000)
     return () => clearInterval(id)
   }, [])
 

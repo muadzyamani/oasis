@@ -5,6 +5,7 @@ import { NavigationRail } from '@/components/ui/NavigationRail'
 import { TimerWidget } from '@/components/timer/TimerWidget'
 import { useAmbient } from '@/hooks/useAmbient'
 import { useOasisGrowth } from '@/hooks/useOasisGrowth'
+import { TimeDebugPanel } from '@/components/dev/TimeDebugPanel'
 import type { PreviewElement } from '@/hooks/useTimer'
 
 /* ==========================================================================
@@ -50,6 +51,9 @@ function App() {
 
       {/* Layer 2 — Navigation rail */}
       <NavigationRail />
+
+      {/* Layer 3 — Dev tools (stripped from production bundle) */}
+      {import.meta.env.DEV && <TimeDebugPanel />}
     </AppShell>
   )
 }

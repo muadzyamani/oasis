@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import type { AtmosphereState } from '@/types/growth.types'
 import { getSunProps, getSkyBrightnessOverlay } from '@/engines/ambientEngine'
+import { useDevStore } from '@/stores/devStore'
 
 /* ==========================================================================
    SkyLayer — Continuous Sky System
@@ -14,15 +15,25 @@ interface SkyLayerProps {
 
 /* ─── Stars (seeded, deterministic) ──────────────────────────────────────── */
 
-const STARS = Array.from({ length: 65 }, (_, i) => ({
-  id: i,
-  x: (i * 137.508) % 100,
-  y: (i * 97.317) % 65,
-  size: i % 4 === 0 ? 2.5 : i % 3 === 0 ? 2 : 1,
-  baseOpacity: 0.3 + (i % 5) * 0.12,
-  twinkleDuration: 2 + (i % 4) * 0.7,
-  twinkleDelay: i * 0.08,
-}))
+// Use a pseudo-random hash to prevent vertical column patterns
+const STARS = Array.from({ length: 65 }, (_, i) => {
+  // Pseudo-random values between 0 and 1
+  const randX = Math.abs(Math.sin(i * 12.9898 + 78.233))
+  const randY = Math.abs(Math.sin(i * 78.233 + 12.9898))
+  const randSize = Math.abs(Math.sin(i * 45.123))
+  const randOpacity = Math.abs(Math.sin(i * 67.891))
+  const randTwinkle = Math.abs(Math.sin(i * 89.123))
+  
+  return {
+    id: i,
+    x: randX * 100, // 0 to 100%
+    y: randY * 65,  // 0 to 65% (top part of sky)
+    size: randSize > 0.8 ? 2.5 : randSize > 0.5 ? 2 : 1,
+    baseOpacity: 0.25 + randOpacity * 0.4,
+    twinkleDuration: 2 + randTwinkle * 2.5,
+    twinkleDelay: randTwinkle * 2,
+  }
+})
 
 /* ─── Sun component (SVG — cross-browser, no border-radius artifact) ──────────
  *
@@ -212,21 +223,31 @@ function MoonDisc({ phase, size }: { phase: number; size: number }) {
 
 /* ─── SkyLayer ───────────────────────────────────────────────────────────── */
 
-const SKY_TRANSITION = 'background 90s linear, background-color 90s linear'
-const POS_TRANSITION = 'left 90s linear, top 90s linear'
 
 export function SkyLayer({ atmosphere }: SkyLayerProps) {
   const { sunPosition, moonPosition, solarElevation, starsOpacity, lunarPhase, skyColors } = atmosphere
+  const isDevOverride = useDevStore((s) => s.timeOverride !== null)
+
+  // When dev override is active, use instant transitions so scrubbing is responsive.
+  // In production / real-clock mode, use 90s for realistic imperceptible movement.
+  const skyTransition = isDevOverride ? 'background 0.3s ease' : 'background 90s linear'
+  const posTransition = isDevOverride ? 'left 0.3s ease, top 0.3s ease' : 'left 90s linear, top 90s linear'
+  const opacityTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 180s linear'
+  const starsTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 120s linear'
+  const overlayTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 90s linear'
 
   const sunProps = getSunProps(Math.max(0, solarElevation))
   const brightnessOverlay = getSkyBrightnessOverlay(solarElevation)
 
+  // Sun opacity: full at elevation > 0.05, fade in/out near horizon
   const sunOpacity = sunPosition
-    ? Math.min(1, Math.max(0, solarElevation < 0.05 ? solarElevation / 0.05 : 1))
+    ? (solarElevation >= 0.05 ? 1 : solarElevation > 0 ? solarElevation / 0.05 : 0)
     : 0
 
+  // Moon opacity: full when sun is well below horizon (elevation < -0.05)
+  const absSolar = Math.abs(solarElevation)
   const moonOpacity = moonPosition
-    ? Math.min(1, Math.max(0, -solarElevation < 0.05 ? -solarElevation / 0.05 : 1))
+    ? (solarElevation <= -0.05 ? 1 : solarElevation < 0 ? absSolar / 0.05 : 0)
     : 0
 
   const moonElevation = moonPosition
@@ -242,7 +263,7 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
         className="absolute inset-0"
         style={{
           background: `linear-gradient(to bottom, ${skyColors.skyTop} 0%, ${skyColors.skyBottom} 100%)`,
-          transition: SKY_TRANSITION,
+          transition: skyTransition,
         }}
       />
 
@@ -252,7 +273,7 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
         style={{
           background: 'rgba(255,255,255,1)',
           opacity: brightnessOverlay,
-          transition: '90s linear opacity',
+          transition: overlayTransition,
           pointerEvents: 'none',
         }}
       />
@@ -260,7 +281,7 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
       {/* Stars */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{ opacity: starsOpacity, transition: 'opacity 120s linear' }}
+        style={{ opacity: starsOpacity, transition: starsTransition }}
       >
         {STARS.map((star) => (
           <motion.div
@@ -291,7 +312,7 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
             width: 0,
             height: 0,
             opacity: sunOpacity,
-            transition: `${POS_TRANSITION}, opacity 180s linear`,
+            transition: `${posTransition}, ${opacityTransition}`,
           }}
         >
           <SunDisc
@@ -313,7 +334,7 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
             top: `${moonPosition.y}%`,
             transform: 'translate(-50%, -50%)',
             opacity: moonOpacity,
-            transition: `${POS_TRANSITION}, opacity 180s linear`,
+            transition: `${posTransition}, ${opacityTransition}`,
           }}
         >
           <MoonDisc phase={lunarPhase} size={moonSize} />
