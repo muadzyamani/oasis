@@ -3,7 +3,7 @@
    ========================================================================== */
 
 /* Google Fonts — Display, Body, Mono */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
 
 /* Design Tokens */
 @import './tokens.css';
@@ -134,18 +134,30 @@ body::after {
    Utility classes (non-Tailwind, scene-specific)
    ========================================================================== */
 
+/* Apple Glass — primary frosted surface */
 .glass-panel {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
 }
 
+/* Apple Glass — dark-tinted variant */
 .glass-panel-dark {
   background: var(--glass-bg-dark);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border-dark);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Apple Glass — subtle secondary surface (nested panels, pills) */
+.glass-surface {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: var(--glass-blur-medium);
+  -webkit-backdrop-filter: var(--glass-blur-medium);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .font-display {

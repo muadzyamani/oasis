@@ -47,23 +47,42 @@
   --color-text-secondary: #6b4a36;
   --color-text-muted: #9a7a66;
   --color-text-on-dark: #f5e6c8;
-  --color-text-on-dark-muted: rgba(245, 230, 200, 0.6);
+  --color-text-on-dark-muted: rgba(245, 230, 200, 0.82);
 
   /* -------------------------------------------------------------------------
-     Glass / Surface Materials
+     Glass / Surface Materials — Apple Glass spec
+     Heavy blur, near-invisible tint, specular edge, ambient depth shadow
      ------------------------------------------------------------------------- */
-  --glass-bg: rgba(255, 250, 240, 0.1);
-  --glass-bg-hover: rgba(255, 250, 240, 0.16);
-  --glass-bg-dark: rgba(13, 27, 42, 0.5);
-  --glass-border: rgba(255, 250, 240, 0.18);
-  --glass-border-dark: rgba(255, 250, 240, 0.08);
-  --glass-blur: blur(14px);
-  --glass-blur-heavy: blur(24px);
+  /* Tint — barely perceptible warm frost */
+  --glass-bg: rgba(255, 252, 245, 0.08);
+  --glass-bg-hover: rgba(255, 252, 245, 0.13);
+  --glass-bg-active: rgba(255, 252, 245, 0.18);
+  --glass-bg-dark: rgba(10, 20, 35, 0.45);
+
+  /* Borders — luminous single-pixel edge */
+  --glass-border: rgba(255, 255, 255, 0.22);
+  --glass-border-dark: rgba(255, 255, 255, 0.08);
+
+  /* Specular highlight — top-edge shimmer (Apple Glass signature) */
+  --glass-specular: rgba(255, 255, 255, 0.35);
+
+  /* Blur — heavy frosted glass */
+  --glass-blur: blur(48px);
+  --glass-blur-medium: blur(28px);
+  --glass-blur-light: blur(14px);
+
+  /* Ambient shadow — soft, deep, warm */
+  --glass-shadow:
+    0 2px 0 0 rgba(255, 255, 255, 0.18) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.08) inset,
+    0 8px 32px rgba(0, 0, 0, 0.18),
+    0 32px 80px rgba(0, 0, 0, 0.12),
+    0 0 0 0.5px rgba(255, 255, 255, 0.1);
 
   /* -------------------------------------------------------------------------
      Typography
      ------------------------------------------------------------------------- */
-  --font-display: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
+  --font-display: 'EB Garamond', 'Palatino Linotype', Georgia, serif;
   --font-body: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
   --font-mono: 'DM Mono', 'JetBrains Mono', 'Courier New', monospace;
 
