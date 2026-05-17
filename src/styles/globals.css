@@ -1,0 +1,169 @@
+/* ==========================================================================
+   OASIS — Global Styles
+   ========================================================================== */
+
+/* Google Fonts — Display, Body, Mono */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+
+/* Design Tokens */
+@import './tokens.css';
+
+/* Tailwind v4 */
+@import 'tailwindcss';
+
+/* ==========================================================================
+   Tailwind Theme — Map tokens to utility classes
+   ========================================================================== */
+@theme {
+  /* Colors */
+  --color-sand-dawn: var(--color-sand-dawn);
+  --color-sand-warm: var(--color-sand-warm);
+  --color-sand-deep: var(--color-sand-deep);
+  --color-oasis-water: var(--color-oasis-water);
+  --color-oasis-water-light: var(--color-oasis-water-light);
+  --color-oasis-water-deep: var(--color-oasis-water-deep);
+  --color-palm-green: var(--color-palm-green);
+  --color-palm-green-light: var(--color-palm-green-light);
+  --color-reed-green: var(--color-reed-green);
+  --color-dusk-rose: var(--color-dusk-rose);
+  --color-dusk-amber: var(--color-dusk-amber);
+  --color-dawn-lavender: var(--color-dawn-lavender);
+  --color-night-deep: var(--color-night-deep);
+  --color-night-mid: var(--color-night-mid);
+  --color-night-surface: var(--color-night-surface);
+  --color-lantern-gold: var(--color-lantern-gold);
+  --color-moon-silver: var(--color-moon-silver);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-text-muted: var(--color-text-muted);
+  --color-text-on-dark: var(--color-text-on-dark);
+
+  /* Font families */
+  --font-family-display: var(--font-display);
+  --font-family-body: var(--font-body);
+  --font-family-mono: var(--font-mono);
+
+  /* Border radius */
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+}
+
+/* ==========================================================================
+   Base Reset & Defaults
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  overflow: hidden;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-weight: 400;
+  color: var(--color-text-primary);
+  background-color: var(--color-night-deep);
+  line-height: 1.6;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Remove default button styling */
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Remove default list styling */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Smooth focus visible */
+:focus-visible {
+  outline: 2px solid var(--color-lantern-gold);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Selection color */
+::selection {
+  background-color: rgba(240, 192, 96, 0.25);
+  color: var(--color-text-primary);
+}
+
+/* ==========================================================================
+   Grain texture overlay (subtle warmth)
+   ========================================================================== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 128px 128px;
+}
+
+/* ==========================================================================
+   Utility classes (non-Tailwind, scene-specific)
+   ========================================================================== */
+
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+
+.glass-panel-dark {
+  background: var(--glass-bg-dark);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border-dark);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+/* Smooth ambient transitions */
+.ambient-transition {
+  transition:
+    background-color var(--duration-cinematic) var(--ease-breath),
+    color var(--duration-slow) var(--ease-smooth),
+    opacity var(--duration-slow) var(--ease-smooth);
+}
