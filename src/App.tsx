@@ -3,6 +3,7 @@ import { AppShell } from '@/components/ui/AppShell'
 import { OasisScene } from '@/components/scene/OasisScene'
 import { NavigationRail } from '@/components/ui/NavigationRail'
 import { TimerWidget } from '@/components/timer/TimerWidget'
+import { SettingsPanel } from '@/components/overlays/SettingsPanel'
 import { useAmbient } from '@/hooks/useAmbient'
 import { useOasisGrowth } from '@/hooks/useOasisGrowth'
 import { TimeDebugPanel } from '@/components/dev/TimeDebugPanel'
@@ -20,6 +21,7 @@ function App() {
 
   const [preview, setPreview] = useState<PreviewElement | null>(null)
   const [previewProgress, setPreviewProgress] = useState(0)
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const handlePreviewChange = useCallback(
     (el: PreviewElement | null, progress: number) => {
@@ -50,9 +52,12 @@ function App() {
       </div>
 
       {/* Layer 2 — Navigation rail */}
-      <NavigationRail />
+      <NavigationRail onSettingsClick={() => setSettingsOpen((v) => !v)} isSettingsActive={settingsOpen} />
 
-      {/* Layer 3 — Dev tools (stripped from production bundle) */}
+      {/* Layer 3 — Settings overlay */}
+      <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+
+      {/* Layer 4 — Dev tools (stripped from production bundle) */}
       {import.meta.env.DEV && <TimeDebugPanel />}
     </AppShell>
   )

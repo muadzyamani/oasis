@@ -1,8 +1,8 @@
 /* ==========================================================================
    NavigationRail
    Minimal vertical icon rail on the left edge.
-   Houses: Stats, Settings (Phase 2: more panels).
-   Placeholder click handlers — wired in Phase 2.
+   Houses: Stats, Settings.
+   onSettingsClick and isSettingsActive are wired from App.tsx.
    ========================================================================== */
 
 interface NavItem {
@@ -15,9 +15,10 @@ interface NavItem {
 interface NavigationRailProps {
   onStatsClick?: () => void
   onSettingsClick?: () => void
+  isSettingsActive?: boolean
 }
 
-export function NavigationRail({ onStatsClick, onSettingsClick }: NavigationRailProps) {
+export function NavigationRail({ onStatsClick, onSettingsClick, isSettingsActive }: NavigationRailProps) {
   const items: NavItem[] = [
     {
       id: 'stats',
@@ -39,29 +40,39 @@ export function NavigationRail({ onStatsClick, onSettingsClick }: NavigationRail
       style={{ zIndex: 'var(--z-nav)' }}
       aria-label="Main navigation"
     >
-      {items.map((item) => (
-        <button
-          key={item.id}
-          id={`nav-${item.id}`}
-          aria-label={item.label}
-          title={item.label}
-          onClick={item.onClick}
-          className="
-            w-10 h-10 rounded-full flex items-center justify-center
-            text-[var(--color-text-on-dark)] text-lg
-            transition-all duration-300
-            hover:text-[var(--color-lantern-gold)]
-            hover:bg-[var(--glass-bg)]
-            hover:scale-110
-            focus-visible:outline-none
-          "
-          style={{
-            backdropFilter: 'var(--glass-blur)',
-          }}
-        >
-          <span aria-hidden="true">{item.icon}</span>
-        </button>
-      ))}
+      {items.map((item) => {
+        const isActive = item.id === 'settings' && isSettingsActive
+        return (
+          <button
+            key={item.id}
+            id={`nav-${item.id}`}
+            aria-label={item.label}
+            aria-pressed={isActive}
+            title={item.label}
+            onClick={item.onClick}
+            className="
+              w-10 h-10 rounded-full flex items-center justify-center
+              text-lg
+              transition-all duration-300
+              hover:scale-110
+              focus-visible:outline-none
+            "
+            style={{
+              backdropFilter: 'var(--glass-blur)',
+              background: isActive ? 'rgba(240,192,96,0.18)' : 'transparent',
+              border: isActive
+                ? '1px solid rgba(240,192,96,0.4)'
+                : '1px solid transparent',
+              color: isActive
+                ? 'var(--color-lantern-gold)'
+                : 'var(--color-text-on-dark)',
+              transition: 'background 250ms, border 250ms, color 250ms, transform 150ms',
+            }}
+          >
+            <span aria-hidden="true">{item.icon}</span>
+          </button>
+        )
+      })}
     </nav>
   )
 }
