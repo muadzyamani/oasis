@@ -126,10 +126,10 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
               position: 'absolute',
               /* Sit just to the right of the 72px-wide NavigationRail */
               left: 72,
-              top: '50%',
-              transform: 'translateY(-50%)',
+              /* Respect viewport — 5vh margin top and bottom */
+              top: '5vh',
+              bottom: '5vh',
               width: 320,
-              maxHeight: '80vh',
               zIndex: 'var(--z-overlay)' as unknown as number,
               outline: 'none',
               display: 'flex',
@@ -144,7 +144,7 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
                 overflow: 'hidden',
                 display: 'flex',
                 flexDirection: 'column',
-                maxHeight: '80vh',
+                height: '100%',
               }}
             >
               {/* Specular top edge — Apple Glass signature */}
