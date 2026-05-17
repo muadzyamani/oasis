@@ -19,7 +19,11 @@ export function OasisScene({ atmosphere, oasis, newElementId, preview, previewPr
   const { timeOfDay, sessionActive, sessionProgress, isBreak } = atmosphere
 
   return (
-    <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+    <div
+      className="absolute inset-0 overflow-hidden"
+      aria-hidden="true"
+      style={{ willChange: 'transform' }}
+    >
       {/* Layer 1: Continuous sky — sun arc, moon phase, stars */}
       <SkyLayer atmosphere={atmosphere} />
 

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import type { TimeOfDay } from '@/types/growth.types'
 import { SCENE_COLORS } from '@/engines/ambientEngine'
 
@@ -13,42 +12,46 @@ export function GroundLayer({ timeOfDay }: GroundLayerProps) {
     <>
       {/* Far dune silhouettes */}
       <div className="absolute left-0 right-0" style={{ bottom: '28%', zIndex: 2, marginBottom: -1 }}>
-        <motion.svg
+        <svg
           viewBox="0 0 1440 120" preserveAspectRatio="none"
           style={{ width: '100%', height: 120, display: 'block' }}
-          animate={{ opacity: 1 }}
         >
-          <motion.path
+          <path
             d="M0,80 C180,20 360,100 540,55 C720,10 900,90 1080,48 C1260,8 1380,70 1440,58 L1440,120 L0,120Z"
-            animate={{ fill: colors.groundFar }}
-            transition={{ duration: 4, ease: 'easeInOut' }}
+            fill={colors.groundFar}
             fillOpacity="0.55"
+            style={{ transition: 'fill 4s ease-in-out' }}
           />
-          <motion.path
+          <path
             d="M0,100 C240,55 480,110 720,78 C960,46 1200,102 1440,88 L1440,120 L0,120Z"
-            animate={{ fill: colors.groundFar }}
-            transition={{ duration: 4, ease: 'easeInOut' }}
+            fill={colors.groundFar}
             fillOpacity="0.75"
+            style={{ transition: 'fill 4s ease-in-out' }}
           />
-        </motion.svg>
+        </svg>
       </div>
 
       {/* Near ground plane */}
-      <motion.div
+      <div
         className="absolute left-0 right-0 bottom-0"
-        style={{ height: '28%', zIndex: 4 }}
-        animate={{ backgroundColor: colors.groundColor }}
-        transition={{ duration: 4, ease: 'easeInOut' }}
+        style={{
+          height: '28%',
+          zIndex: 4,
+          backgroundColor: colors.groundColor,
+          transition: 'background-color 4s ease-in-out',
+        }}
       />
 
       {/* Ground-sky blend at top of ground */}
-      <motion.div
+      <div
         className="absolute left-0 right-0"
-        style={{ bottom: '28%', height: 40, zIndex: 4 }}
-        animate={{
+        style={{
+          bottom: '28%',
+          height: 40,
+          zIndex: 4,
           background: `linear-gradient(to bottom, transparent, ${colors.groundColor})`,
+          transition: 'background 4s ease-in-out',
         }}
-        transition={{ duration: 4, ease: 'easeInOut' }}
       />
     </>
   )

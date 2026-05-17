@@ -58,7 +58,6 @@ export function NavigationRail({ onStatsClick, onSettingsClick, isSettingsActive
               focus-visible:outline-none
             "
             style={{
-              backdropFilter: 'var(--glass-blur)',
               background: isActive ? 'rgba(240,192,96,0.18)' : 'transparent',
               border: isActive
                 ? '1px solid rgba(240,192,96,0.4)'

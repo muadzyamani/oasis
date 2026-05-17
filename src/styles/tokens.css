@@ -135,9 +135,9 @@
      ------------------------------------------------------------------------- */
   --z-scene: 0;
   --z-scene-top: 10;
-  --z-overlay-backdrop: 20;
-  --z-overlay: 30;
-  --z-widget: 40;
+  --z-widget: 20;
+  --z-overlay-backdrop: 30;
+  --z-overlay: 40;
   --z-nav: 50;
   --z-modal: 60;
   --z-toast: 70;

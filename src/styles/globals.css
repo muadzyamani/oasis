@@ -131,33 +131,76 @@ body::after {
 }
 
 /* ==========================================================================
-   Utility classes (non-Tailwind, scene-specific)
+   Glass / Surface Materials — compositor-safe simulation
+   No backdrop-filter: avoids GPU compositor layer re-promotion that causes
+   scene elements to flash when glass panels enter or leave the DOM.
+
+   The frosted look is achieved with:
+     1. Deep semi-opaque dark base    — gives body and reads as "solid surface"
+     2. Warm frost gradient overlay   — simulates the diffused light of frosted glass
+     3. Inner rim / specular shadow   — inset highlights for Apple Glass depth
+     4. Deep ambient box-shadow       — physical lift off the scene
    ========================================================================== */
 
-/* Apple Glass — primary frosted surface */
+/* Apple Glass — primary surface */
 .glass-panel {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
+  background:
+    /* Frost sheen — warm diffuse light across top */
+    linear-gradient(
+      160deg,
+      rgba(255, 248, 235, 0.13) 0%,
+      rgba(255, 248, 235, 0.05) 45%,
+      rgba(15, 25, 42, 0.0)  100%
+    ),
+    /* Deep base — gives opacity without blur */
+    rgba(14, 22, 38, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow:
+    /* Inner top rim — specular highlight */
+    0 1.5px 0 0 rgba(255, 255, 255, 0.18) inset,
+    /* Inner bottom rim — depth shadow */
+    0 -1px 0 0 rgba(0, 0, 0, 0.12) inset,
+    /* Inner left rim — side light */
+    1px 0 0 0 rgba(255, 255, 255, 0.07) inset,
+    /* Ambient lift — soft haze under panel */
+    0 8px 32px rgba(0, 0, 0, 0.36),
+    0 24px 64px rgba(0, 0, 0, 0.24),
+    /* Edge outline — 0.5px luminous border */
+    0 0 0 0.5px rgba(255, 255, 255, 0.08);
 }
 
-/* Apple Glass — dark-tinted variant */
+/* Apple Glass — dark-tinted variant (used for darker overlays) */
 .glass-panel-dark {
-  background: var(--glass-bg-dark);
-  backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-border-dark);
-  box-shadow: var(--glass-shadow);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 248, 235, 0.07) 0%,
+      rgba(255, 248, 235, 0.02) 45%,
+      transparent 100%
+    ),
+    rgba(8, 14, 26, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  box-shadow:
+    0 1.5px 0 0 rgba(255, 255, 255, 0.12) inset,
+    0 -1px 0 0 rgba(0, 0, 0, 0.18) inset,
+    0 8px 32px rgba(0, 0, 0, 0.42),
+    0 24px 64px rgba(0, 0, 0, 0.28),
+    0 0 0 0.5px rgba(255, 255, 255, 0.05);
 }
 
 /* Apple Glass — subtle secondary surface (nested panels, pills) */
 .glass-surface {
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: var(--glass-blur-medium);
-  -webkit-backdrop-filter: var(--glass-blur-medium);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background:
+    linear-gradient(
+      160deg,
+      rgba(255, 255, 255, 0.10) 0%,
+      rgba(255, 255, 255, 0.04) 100%
+    ),
+    rgba(20, 32, 52, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.10) inset,
+    0 2px 8px rgba(0, 0, 0, 0.18);
 }
 
 .font-display {

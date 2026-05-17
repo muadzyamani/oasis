@@ -17,7 +17,7 @@ export function WaterLayer({ timeOfDay, sessionActive, tier }: WaterLayerProps) 
   return (
     <div className="absolute left-0 right-0" style={{ top: '60%', height: '12%', zIndex: 3 }}>
       {/* Water band — elliptical pool */}
-      <motion.div
+      <div
         className="absolute left-1/2"
         style={{
           width: poolWidth,
@@ -25,9 +25,9 @@ export function WaterLayer({ timeOfDay, sessionActive, tier }: WaterLayerProps) 
           transform: 'translateX(-50%)',
           borderRadius: '50%',
           overflow: 'hidden',
+          backgroundColor: waterColor,
+          transition: 'background-color 4s ease-in-out',
         }}
-        animate={{ backgroundColor: waterColor }}
-        transition={{ duration: 4, ease: 'easeInOut' }}
       >
         {/* Surface shimmer */}
         <motion.div
@@ -55,7 +55,7 @@ export function WaterLayer({ timeOfDay, sessionActive, tier }: WaterLayerProps) 
             transition={{ repeat: Infinity, duration: rippleSpeed, ease: 'easeOut', delay: i * (rippleSpeed / 3) }}
           />
         ))}
-      </motion.div>
+      </div>
     </div>
   )
 }
