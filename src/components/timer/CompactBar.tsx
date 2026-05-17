@@ -54,13 +54,15 @@ export function CompactBar({
       {/* Inner motion div: handles y/opacity animation only */}
       <motion.div
         key="compact-inner"
-        initial={{ y: 80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: 80, opacity: 0 }}
-        transition={{ type: 'spring', stiffness: 200, damping: 26 }}
+        layout
+        initial={{ y: 40, opacity: 0, scale: 0.95 }}
+        animate={{ y: 0, opacity: 1, scale: 1 }}
+        exit={{ y: 40, opacity: 0, scale: 0.95 }}
+        transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
         style={{ pointerEvents: 'auto' }}
       >
-        <div
+        <motion.div
+          layout
           className="glass-panel flex items-center"
           style={{
             borderRadius: 999,
@@ -69,6 +71,7 @@ export function CompactBar({
             position: 'relative',
             overflow: 'hidden',
           }}
+          transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
         >
           {/* Specular top edge */}
           <div
@@ -118,7 +121,8 @@ export function CompactBar({
           <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.12)' }} />
 
           {/* Pause / Resume */}
-          <button
+          <motion.button
+            layout
             id={isActive ? 'btn-compact-pause' : 'btn-compact-resume'}
             onClick={isActive ? onPause : onResume}
             style={{
@@ -127,14 +131,17 @@ export function CompactBar({
               background: 'rgba(255,255,255,0.1)',
               border: '1px solid rgba(255,255,255,0.15)',
               borderRadius: 999, padding: '5px 13px', cursor: 'pointer',
-              transition: 'background 150ms ease', whiteSpace: 'nowrap',
+              whiteSpace: 'nowrap',
             }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
           >
-            {isActive ? 'Pause' : 'Resume'}
-          </button>
+            <motion.span layout="position">{isActive ? 'Pause' : 'Resume'}</motion.span>
+          </motion.button>
 
           {/* Stop */}
-          <button
+          <motion.button
+            layout
             id="btn-compact-stop"
             onClick={onStop}
             style={{
@@ -143,10 +150,12 @@ export function CompactBar({
               background: 'transparent', border: 'none',
               cursor: 'pointer', padding: '5px 4px',
             }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
           >
-            End
-          </button>
-        </div>
+            <motion.span layout="position">End</motion.span>
+          </motion.button>
+        </motion.div>
       </motion.div>
     </div>
   )

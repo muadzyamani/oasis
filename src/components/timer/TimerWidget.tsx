@@ -14,12 +14,6 @@ import type { SessionType } from '@/types/session.types'
    TimerWidget — two modes
    Expanded  (idle / complete): full glass card, centered
    Minimized (active / paused): CompactBar slides up from bottom
-
-   Key design decisions:
-   - Single AnimatePresence with mode="wait" so the exit completes before
-     the entrance begins — eliminates simultaneous-animation glitch.
-   - Expanded card uses scale+y ONLY (no opacity) so backdrop-filter:blur
-     doesn't flash as the panel fades in.
    ========================================================================== */
 
 interface TimerWidgetProps {
@@ -60,11 +54,9 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
   return (
     <>
       {/*
-       * Single AnimatePresence with mode="wait":
-       * - The exiting element fully completes its exit before the entering
-       *   element starts — no overlap, no simultaneous-animation glitch.
+       * Simultaneous transitions using Apple-style spring physics.
        */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         {isMinimized ? (
           /* ── COMPACT BAR ── */
           <CompactBar
@@ -81,17 +73,10 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
           /* ── EXPANDED CARD ── */
           <motion.div
             key="expanded"
-            /*
-             * Scale + y ONLY — deliberately no opacity animation.
-             * backdrop-filter:blur(48px) creates a visible "flash" if the
-             * panel fades in with opacity:0, because the blur is applied at
-             * every opacity level, making the background seem to shift.
-             * Scale alone is smooth and glitch-free.
-             */
-            initial={{ scale: 0.93, y: 24 }}
-            animate={{ scale: 1, y: 0 }}
-            exit={{ scale: 0.93, y: 24 }}
-            transition={{ type: 'spring', stiffness: 200, damping: 24 }}
+            initial={{ scale: 0.9, y: 20, opacity: 0 }}
+            animate={{ scale: 1, y: 0, opacity: 1 }}
+            exit={{ scale: 0.95, y: 10, opacity: 0 }}
+            transition={{ type: 'spring', bounce: 0, duration: 0.5 }}
           >
             <div
               className="glass-panel flex flex-col items-center"
