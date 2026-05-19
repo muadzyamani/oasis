@@ -43,10 +43,12 @@ function App() {
 
       {/* Layer 1 — Timer widget (expanded card or compact bar) */}
       <div
-        className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-300 ${
+          settingsOpen ? 'max-md:opacity-0 max-md:scale-95' : 'opacity-100 scale-100'
+        }`}
         style={{ zIndex: 'var(--z-widget)' }}
       >
-        <div className="pointer-events-auto">
+        <div className={`pointer-events-auto ${settingsOpen ? 'max-md:pointer-events-none' : ''}`}>
           <TimerWidget onPreviewChange={handlePreviewChange} />
         </div>
       </div>

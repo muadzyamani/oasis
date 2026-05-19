@@ -124,12 +124,14 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
         animate={open ? 'visible' : 'hidden'}
         style={{
           position: 'absolute',
-          /* Sit just to the right of the 72px-wide NavigationRail */
-          left: 72,
-          /* Respect viewport — 5vh margin top and bottom */
-          top: '5vh',
-          bottom: '5vh',
-          width: 320,
+          /* Sit just to the right of the NavigationRail, dynamically adjust for small screens */
+          left: 'clamp(56px, 15vw, 72px)',
+          /* Respect viewport — dynamic margin top and bottom */
+          top: 'clamp(12px, 5vh, 40px)',
+          bottom: 'clamp(12px, 5vh, 40px)',
+          /* Dynamically adjust width to prevent bleeding off screen */
+          width: 'min(320px, calc(100vw - 80px))',
+          maxHeight: 'calc(100dvh - 2 * clamp(12px, 5vh, 40px))',
           zIndex: 'var(--z-overlay)' as unknown as number,
           outline: 'none',
           display: 'flex',
