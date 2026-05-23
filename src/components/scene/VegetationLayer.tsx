@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 function GrassTuft() {
   return (
     <motion.svg
-      width="25"
-      height="30"
+      width="20"
+      height="24"
       viewBox="0 0 25 30"
       fill="none"
       stroke="#558B2F"
@@ -27,8 +27,8 @@ function LowBush({ type }: { type: 'pink' | 'yellow' }) {
   const fruitColor = type === 'pink' ? '#E91E63' : '#FFC107'
   return (
     <motion.svg
-      width="60"
-      height="30"
+      width="48"
+      height="24"
       viewBox="0 0 60 30"
       fill="none"
       animate={{ scaleY: [0.97, 1.03, 0.97] }}
@@ -57,8 +57,8 @@ function SmallRocks() {
 function ReedCluster() {
   return (
     <motion.svg
-      width="50"
-      height="150"
+      width="30"
+      height="90"
       viewBox="0 0 50 150"
       fill="none"
       animate={{ rotate: [-1.5, 1.5, -1.5] }}
@@ -94,8 +94,8 @@ function ReedCluster() {
 function Cattail() {
   return (
     <motion.svg
-      width="40"
-      height="160"
+      width="24"
+      height="96"
       viewBox="0 0 40 160"
       fill="none"
       animate={{ rotate: [-2, 2, -2] }}
@@ -115,8 +115,8 @@ function Cattail() {
 function WaterLily() {
   return (
     <motion.svg
-      width="25"
-      height="15"
+      width="20"
+      height="12"
       viewBox="0 0 25 15"
       fill="none"
       animate={{ y: [-1, 1, -1] }}
