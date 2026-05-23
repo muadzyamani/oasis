@@ -24,7 +24,7 @@ export function GroundLayer({ timeOfDay }: GroundLayerProps) {
             style={{ transition: 'fill 4s ease-in-out' }}
           />
           <ellipse
-            cx="650" cy="85" rx="240" ry="40"
+            cx="700" cy="85" rx="280" ry="40"
             fill={colors.groundFar}
             fillOpacity="0.7"
             style={{ transition: 'fill 4s ease-in-out' }}
