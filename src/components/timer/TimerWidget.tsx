@@ -35,9 +35,13 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
   useEffect(() => {
     if (!timer.plantedElementId) return
     const planted = growth.oasis.elements.find((e) => e.id === timer.plantedElementId)
-    if (planted) setToastMsg(buildToastMessage(planted.type, false))
-    timer.clearPlanted()
-  }, [timer.plantedElementId]) // eslint-disable-line react-hooks/exhaustive-deps
+    
+    const handle = setTimeout(() => {
+      if (planted) setToastMsg(buildToastMessage(planted.type, false))
+      timer.clearPlanted()
+    }, 0)
+    return () => clearTimeout(handle)
+  }, [timer.plantedElementId, growth.oasis.elements, timer])
 
   const isBreak = timer.sessionType !== 'focus'
   const isMinimized = timer.status === 'active' || timer.status === 'paused'

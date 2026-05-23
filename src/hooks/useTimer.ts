@@ -44,31 +44,33 @@ export function useTimer(): UseTimerReturn {
   const [previewElement, setPreviewElement] = useState<PreviewElement | null>(null)
 
   const onCompleteRef = useRef<() => void>(() => {})
-  onCompleteRef.current = () => {
-    const { sessionType } = useTimerStore.getState()
-    const { currentSession } = useSessionStore.getState()
+  useEffect(() => {
+    onCompleteRef.current = () => {
+      const { sessionType } = useTimerStore.getState()
+      const { currentSession } = useSessionStore.getState()
 
-    if (sessionType === 'focus' && currentSession) {
-      const completed = useSessionStore.getState().completeSession()
-      if (completed) {
-        useStatsStore.getState().recordCompletedSession(completed)
-        const { oasis } = useOasisStore.getState()
-        const event = resolveGrowthEvent(completed, oasis)
-        const planted = useOasisStore.getState().addElement(
-          event.elementType,
-          completed.id,
-          event.plantedAt,
-        )
-        useOasisStore.getState().addFocusMinutes(completed.durationMinutes)
-        setPlantedElementId(planted.id)
-        setPreviewElement(null) // preview becomes the real element
+      if (sessionType === 'focus' && currentSession) {
+        const completed = useSessionStore.getState().completeSession()
+        if (completed) {
+          useStatsStore.getState().recordCompletedSession(completed)
+          const { oasis } = useOasisStore.getState()
+          const event = resolveGrowthEvent(completed, oasis)
+          const planted = useOasisStore.getState().addElement(
+            event.elementType,
+            completed.id,
+            event.plantedAt,
+          )
+          useOasisStore.getState().addFocusMinutes(completed.durationMinutes)
+          setPlantedElementId(planted.id)
+          setPreviewElement(null) // preview becomes the real element
+        }
+      } else {
+        useSessionStore.getState().completeSession()
       }
-    } else {
-      useSessionStore.getState().completeSession()
-    }
 
-    useTimerStore.setState({ status: 'complete' })
-  }
+      useTimerStore.setState({ status: 'complete' })
+    }
+  })
 
   useEffect(() => {
     workerRef.current = new Worker(
