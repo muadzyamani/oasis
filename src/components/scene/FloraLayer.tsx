@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import type { OasisElement } from '@/types/oasis.types'
+import type { OasisElement, GrowthStage } from '@/types/oasis.types'
 import type { PreviewElement } from '@/hooks/useTimer'
 import { Sprout } from './elements/Sprout'
 import { Flower } from './elements/Flower'
@@ -11,6 +11,10 @@ import { DatePalm } from './elements/DatePalm'
 import { Acacia } from './elements/Acacia'
 import { Succulent } from './elements/Succulent'
 import { DesertWillow } from './elements/DesertWillow'
+import { MaturePalm } from './elements/MaturePalm'
+import { MatureAcacia } from './elements/MatureAcacia'
+import { MatureSucculent } from './elements/MatureSucculent'
+import { MatureDesertWillow } from './elements/MatureDesertWillow'
 
 interface FloraLayerProps {
   elements: OasisElement[]
@@ -19,7 +23,21 @@ interface FloraLayerProps {
   previewProgress?: number // 0→1
 }
 
-function ElementComponent({ type, seed }: { type: OasisElement['type']; seed: number }) {
+function ElementComponent({ type, stage, seed }: { type: OasisElement['type']; stage: GrowthStage; seed: number }) {
+  // For the 4 growing plant types, dispatch by stage
+  if (stage === 'mature') {
+    switch (type) {
+      case 'palm':
+        return <MaturePalm seed={seed} />
+      case 'acacia':
+        return <MatureAcacia />
+      case 'succulent':
+        return <MatureSucculent />
+      case 'willow':
+        return <MatureDesertWillow />
+    }
+  }
+  // stage === 'sapling' (or non-growing types): use existing sapling components
   switch (type) {
     case 'palm':
       return <DatePalm />
@@ -81,7 +99,7 @@ export function FloraLayer({
                   : { duration: 0 }
               }
             >
-              <ElementComponent type={el.type} seed={i} />
+              <ElementComponent type={el.type} stage={el.stage} seed={i} />
             </motion.div>
           )
         })}
@@ -105,7 +123,7 @@ export function FloraLayer({
             transition={{ type: 'spring', stiffness: 70, damping: 14, duration: 0.8 }}
           >
             {/* Render the specific sapling that is growing in this session */}
-            <ElementComponent type={preview.type} seed={99} />
+            <ElementComponent type={preview.type} stage="sapling" seed={99} />
           </motion.div>
         )}
       </AnimatePresence>

@@ -4,6 +4,8 @@
 
 export type GrowthTier = 0 | 1 | 2 | 3 | 4 | 5
 
+export type GrowthStage = 'sapling' | 'mature'
+
 export type OasisElementType =
   | 'sprout'
   | 'flower'
@@ -28,6 +30,7 @@ export interface OasisElement {
     y: number // percentage 0–100 (relative to scene height)
   }
   tier: GrowthTier // which tier this element was unlocked at
+  stage: GrowthStage // 'sapling' while preview/growing, 'mature' once planted
 }
 
 export interface OasisState {

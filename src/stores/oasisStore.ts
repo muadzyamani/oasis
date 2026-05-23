@@ -83,6 +83,7 @@ export const useOasisStore = create<OasisStoreState>()(
           label: format.elementLabel(type, plantedAt),
           position: finalPosition,
           tier: oasis.tier,
+          stage: 'mature',
         }
 
         const updatedElements = [...oasis.elements, element]
@@ -123,6 +124,11 @@ export const useOasisStore = create<OasisStoreState>()(
         const tier = computeTier(state.oasis.totalFocusMinutes)
         state.currentTier = tier
         state.nextTierMinutesRequired = computeNextTierMinutes(tier)
+        // Backward compat: existing elements without stage default to 'mature'
+        state.oasis.elements = state.oasis.elements.map((el: any) => ({
+          ...el,
+          stage: el.stage ?? 'mature',
+        }))
       },
     },
   ),
