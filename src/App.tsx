@@ -23,13 +23,10 @@ function App() {
   const [previewProgress, setPreviewProgress] = useState(0)
   const [settingsOpen, setSettingsOpen] = useState(false)
 
-  const handlePreviewChange = useCallback(
-    (el: PreviewElement | null, progress: number) => {
-      setPreview(el)
-      setPreviewProgress(progress)
-    },
-    [],
-  )
+  const handlePreviewChange = useCallback((el: PreviewElement | null, progress: number) => {
+    setPreview(el)
+    setPreviewProgress(progress)
+  }, [])
 
   return (
     <AppShell>
@@ -54,7 +51,10 @@ function App() {
       </div>
 
       {/* Layer 2 — Navigation rail */}
-      <NavigationRail onSettingsClick={() => setSettingsOpen((v) => !v)} isSettingsActive={settingsOpen} />
+      <NavigationRail
+        onSettingsClick={() => setSettingsOpen((v) => !v)}
+        isSettingsActive={settingsOpen}
+      />
 
       {/* Layer 3 — Settings overlay */}
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />

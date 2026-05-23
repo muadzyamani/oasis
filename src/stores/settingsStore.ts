@@ -19,8 +19,8 @@ interface SettingsState {
   focusWindowEnd: number // hour 0–23
   notificationsEnabled: boolean
   reducedMotion: boolean
-  sunriseHour: number  // 0–23, default 7
-  sunsetHour: number   // 0–23, default 19
+  sunriseHour: number // 0–23, default 7
+  sunsetHour: number // 0–23, default 19
 
   // Actions
   setSoundEnabled: (enabled: boolean) => void
@@ -58,7 +58,10 @@ export const useSettingsStore = create<SettingsState>()(
       setNotificationsEnabled: (enabled) => set({ notificationsEnabled: enabled }),
       setReducedMotion: (reduced) => set({ reducedMotion: reduced }),
       setSunTimes: (sunriseHour, sunsetHour) =>
-        set({ sunriseHour: Math.max(0, Math.min(23, sunriseHour)), sunsetHour: Math.max(0, Math.min(23, sunsetHour)) }),
+        set({
+          sunriseHour: Math.max(0, Math.min(23, sunriseHour)),
+          sunsetHour: Math.max(0, Math.min(23, sunsetHour)),
+        }),
     }),
     { name: 'oasis-settings' },
   ),

@@ -13,9 +13,9 @@ interface CompactBarProps {
 }
 
 const SESSION_LABEL: Record<SessionType, string> = {
-  'focus':       'Focus',
+  focus: 'Focus',
   'short-break': 'Short Break',
-  'long-break':  'Long Break',
+  'long-break': 'Long Break',
 }
 
 const ARC_RADIUS = 10
@@ -77,18 +77,35 @@ export function CompactBar({
           <div
             aria-hidden="true"
             style={{
-              position: 'absolute', top: 0, left: '15%', right: '15%', height: 1,
-              background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.45) 60%, transparent)',
+              position: 'absolute',
+              top: 0,
+              left: '15%',
+              right: '15%',
+              height: 1,
+              background:
+                'linear-gradient(90deg, transparent, rgba(255,255,255,0.45) 40%, rgba(255,255,255,0.45) 60%, transparent)',
             }}
           />
 
           {/* Mini progress ring + countdown */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
             <svg width={28} height={28} style={{ transform: 'rotate(-90deg)', flexShrink: 0 }}>
-              <circle cx={14} cy={14} r={ARC_RADIUS} fill="none" stroke="rgba(255,255,255,0.1)" strokeWidth={2} />
               <circle
-                cx={14} cy={14} r={ARC_RADIUS}
-                fill="none" stroke={arcColor} strokeWidth={2} strokeLinecap="round"
+                cx={14}
+                cy={14}
+                r={ARC_RADIUS}
+                fill="none"
+                stroke="rgba(255,255,255,0.1)"
+                strokeWidth={2}
+              />
+              <circle
+                cx={14}
+                cy={14}
+                r={ARC_RADIUS}
+                fill="none"
+                stroke={arcColor}
+                strokeWidth={2}
+                strokeLinecap="round"
                 strokeDasharray={ARC_CIRC}
                 strokeDashoffset={offset}
                 style={{
@@ -98,10 +115,16 @@ export function CompactBar({
               />
             </svg>
 
-            <span style={{
-              fontFamily: 'var(--font-mono)', fontSize: '1.15rem', fontWeight: 400,
-              color: '#ffffff', letterSpacing: '-0.02em', minWidth: 52,
-            }}>
+            <span
+              style={{
+                fontFamily: 'var(--font-mono)',
+                fontSize: '1.15rem',
+                fontWeight: 400,
+                color: '#ffffff',
+                letterSpacing: '-0.02em',
+                minWidth: 52,
+              }}
+            >
               {format.countdown(timeRemainingSeconds)}
             </span>
           </div>
@@ -110,10 +133,16 @@ export function CompactBar({
           <div style={{ width: 1, height: 20, background: 'rgba(255,255,255,0.12)' }} />
 
           {/* Session label */}
-          <span style={{
-            fontFamily: 'var(--font-body)', fontSize: '0.72rem', fontWeight: 500,
-            color: arcColor, letterSpacing: '0.05em', whiteSpace: 'nowrap',
-          }}>
+          <span
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.72rem',
+              fontWeight: 500,
+              color: arcColor,
+              letterSpacing: '0.05em',
+              whiteSpace: 'nowrap',
+            }}
+          >
             {SESSION_LABEL[sessionType]}
           </span>
 
@@ -126,11 +155,15 @@ export function CompactBar({
             id={isActive ? 'btn-compact-pause' : 'btn-compact-resume'}
             onClick={isActive ? onPause : onResume}
             style={{
-              fontFamily: 'var(--font-body)', fontSize: '0.72rem', fontWeight: 600,
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.72rem',
+              fontWeight: 600,
               color: 'var(--color-text-on-dark)',
               background: 'rgba(255,255,255,0.1)',
               border: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: 999, padding: '5px 13px', cursor: 'pointer',
+              borderRadius: 999,
+              padding: '5px 13px',
+              cursor: 'pointer',
               whiteSpace: 'nowrap',
             }}
             whileTap={{ scale: 0.95 }}
@@ -145,10 +178,14 @@ export function CompactBar({
             id="btn-compact-stop"
             onClick={onStop}
             style={{
-              fontFamily: 'var(--font-body)', fontSize: '0.72rem', fontWeight: 500,
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.72rem',
+              fontWeight: 500,
               color: 'var(--color-text-on-dark-muted)',
-              background: 'transparent', border: 'none',
-              cursor: 'pointer', padding: '5px 4px',
+              background: 'transparent',
+              border: 'none',
+              cursor: 'pointer',
+              padding: '5px 4px',
             }}
             whileTap={{ scale: 0.95 }}
             transition={{ type: 'spring', bounce: 0, duration: 0.4 }}

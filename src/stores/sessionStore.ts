@@ -19,8 +19,7 @@ interface SessionState {
   clearHistory: () => void
 }
 
-const generateId = (): string =>
-  `session_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
+const generateId = (): string => `session_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
 
 export const useSessionStore = create<SessionState>()(
   persist(

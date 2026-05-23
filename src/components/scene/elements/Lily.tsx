@@ -3,7 +3,10 @@ import { motion } from 'framer-motion'
 export function Lily() {
   return (
     <motion.svg
-      width="52" height="32" viewBox="0 0 52 32" fill="none"
+      width="52"
+      height="32"
+      viewBox="0 0 52 32"
+      fill="none"
       animate={{ y: [-1, 1, -1] }}
       transition={{ repeat: Infinity, duration: 3.5, ease: 'easeInOut' }}
       style={{ overflow: 'visible' }}
@@ -18,7 +21,8 @@ export function Lily() {
           key={i}
           cx={26 + Math.cos((angle * Math.PI) / 180) * 6}
           cy={16 + Math.sin((angle * Math.PI) / 180) * 4}
-          rx="4" ry="6"
+          rx="4"
+          ry="6"
           transform={`rotate(${angle} ${26 + Math.cos((angle * Math.PI) / 180) * 6} ${16 + Math.sin((angle * Math.PI) / 180) * 4})`}
           fill="#f0e0f0"
           opacity="0.9"

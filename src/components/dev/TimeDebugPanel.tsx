@@ -16,11 +16,26 @@ import {
    Renders nothing in production.
    ========================================================================== */
 
-function pad(n: number) { return String(Math.floor(n)).padStart(2, '0') }
-function minutesToHHMM(m: number) { return `${pad(m / 60)}:${pad(m % 60)}` }
+function pad(n: number) {
+  return String(Math.floor(n)).padStart(2, '0')
+}
+function minutesToHHMM(m: number) {
+  return `${pad(m / 60)}:${pad(m % 60)}`
+}
 
-const PHASE_LABELS = ['🌑 New', '🌒 Waxing crescent', '🌓 First quarter', '🌔 Waxing gibbous', '🌕 Full', '🌖 Waning gibbous', '🌗 Last quarter', '🌘 Waning crescent']
-function phaseLabel(p: number) { return PHASE_LABELS[Math.round(p * 8) % 8] }
+const PHASE_LABELS = [
+  '🌑 New',
+  '🌒 Waxing crescent',
+  '🌓 First quarter',
+  '🌔 Waxing gibbous',
+  '🌕 Full',
+  '🌖 Waning gibbous',
+  '🌗 Last quarter',
+  '🌘 Waning crescent',
+]
+function phaseLabel(p: number) {
+  return PHASE_LABELS[Math.round(p * 8) % 8]
+}
 
 export function TimeDebugPanel() {
   const { timeOverride, setTimeOverride, clearTimeOverride } = useDevStore()
@@ -65,14 +80,22 @@ export function TimeDebugPanel() {
       <div
         onClick={() => setCollapsed(!collapsed)}
         style={{
-          display: 'flex', alignItems: 'center', gap: 6,
+          display: 'flex',
+          alignItems: 'center',
+          gap: 6,
           padding: collapsed ? '7px 12px' : '8px 12px 6px',
           cursor: 'pointer',
           borderBottom: collapsed ? 'none' : '1px solid rgba(255,255,255,0.07)',
         }}
       >
         <span style={{ fontSize: 13 }}>🕐</span>
-        <span style={{ fontWeight: 600, color: isOverriding ? '#f0c060' : '#8ab4cc', letterSpacing: '0.04em' }}>
+        <span
+          style={{
+            fontWeight: 600,
+            color: isOverriding ? '#f0c060' : '#8ab4cc',
+            letterSpacing: '0.04em',
+          }}
+        >
           {isOverriding ? '⏱ TIME OVERRIDE' : 'Sky Debug'}
         </span>
         {!collapsed && <span style={{ marginLeft: 'auto', opacity: 0.4, fontSize: 10 }}>▼</span>}
@@ -83,7 +106,14 @@ export function TimeDebugPanel() {
         <div style={{ padding: '10px 12px 12px' }}>
           {/* Current time display */}
           <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 10 }}>
-            <span style={{ fontSize: 22, fontWeight: 700, color: isOverriding ? '#f0c060' : '#ffffff', letterSpacing: '-0.03em' }}>
+            <span
+              style={{
+                fontSize: 22,
+                fontWeight: 700,
+                color: isOverriding ? '#f0c060' : '#ffffff',
+                letterSpacing: '-0.03em',
+              }}
+            >
               {minutesToHHMM(currentMinute)}
             </span>
             <span style={{ opacity: 0.5, fontSize: 10 }}>
@@ -118,8 +148,12 @@ export function TimeDebugPanel() {
                 key={label}
                 onClick={() => setTimeOverride(Math.floor(min / 60), min % 60)}
                 style={{
-                  fontSize: 10, padding: '3px 7px', borderRadius: 6, cursor: 'pointer',
-                  background: currentMinute === min ? 'rgba(240,192,96,0.25)' : 'rgba(255,255,255,0.06)',
+                  fontSize: 10,
+                  padding: '3px 7px',
+                  borderRadius: 6,
+                  cursor: 'pointer',
+                  background:
+                    currentMinute === min ? 'rgba(240,192,96,0.25)' : 'rgba(255,255,255,0.06)',
                   border: `1px solid ${currentMinute === min ? 'rgba(240,192,96,0.5)' : 'rgba(255,255,255,0.1)'}`,
                   color: currentMinute === min ? '#f0c060' : '#8ab4cc',
                 }}
@@ -130,10 +164,32 @@ export function TimeDebugPanel() {
           </div>
 
           {/* Computed values */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 3, marginBottom: 10, opacity: 0.8 }}>
-            <Row k="Elevation" v={`${(elev * 100).toFixed(1)}%  ${elev > 0 ? '☀︎ day' : '🌙 night'}`} highlight={elev > 0} />
-            <Row k="Sun pos" v={sunPos ? `x:${sunPos.x.toFixed(1)}% y:${sunPos.y.toFixed(1)}%` : '— below horizon'} />
-            <Row k="Moon pos" v={moonPos ? `x:${moonPos.x.toFixed(1)}% y:${moonPos.y.toFixed(1)}%` : '— below horizon'} />
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 3,
+              marginBottom: 10,
+              opacity: 0.8,
+            }}
+          >
+            <Row
+              k="Elevation"
+              v={`${(elev * 100).toFixed(1)}%  ${elev > 0 ? '☀︎ day' : '🌙 night'}`}
+              highlight={elev > 0}
+            />
+            <Row
+              k="Sun pos"
+              v={sunPos ? `x:${sunPos.x.toFixed(1)}% y:${sunPos.y.toFixed(1)}%` : '— below horizon'}
+            />
+            <Row
+              k="Moon pos"
+              v={
+                moonPos
+                  ? `x:${moonPos.x.toFixed(1)}% y:${moonPos.y.toFixed(1)}%`
+                  : '— below horizon'
+              }
+            />
             <Row k="Stars" v={`${(stars * 100).toFixed(0)}% visible`} />
             <Row k="Lunar" v={`${phaseLabel(lunarPhase)}  (${(lunarPhase * 100).toFixed(1)}%)`} />
             <Row k="Sunrise" v={`${pad(sunriseHour)}:00`} />
@@ -146,7 +202,11 @@ export function TimeDebugPanel() {
               onClick={clearTimeOverride}
               disabled={!isOverriding}
               style={{
-                flex: 1, fontSize: 10, padding: '5px 0', borderRadius: 6, cursor: isOverriding ? 'pointer' : 'default',
+                flex: 1,
+                fontSize: 10,
+                padding: '5px 0',
+                borderRadius: 6,
+                cursor: isOverriding ? 'pointer' : 'default',
                 background: isOverriding ? 'rgba(240,192,96,0.15)' : 'rgba(255,255,255,0.04)',
                 border: `1px solid ${isOverriding ? 'rgba(240,192,96,0.4)' : 'rgba(255,255,255,0.08)'}`,
                 color: isOverriding ? '#f0c060' : 'rgba(255,255,255,0.3)',
@@ -165,7 +225,15 @@ function Row({ k, v, highlight }: { k: string; v: string; highlight?: boolean })
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', gap: 8 }}>
       <span style={{ opacity: 0.5, flexShrink: 0 }}>{k}</span>
-      <span style={{ color: highlight ? '#a8d4a0' : '#c8d4e0', textAlign: 'right', fontVariantNumeric: 'tabular-nums' }}>{v}</span>
+      <span
+        style={{
+          color: highlight ? '#a8d4a0' : '#c8d4e0',
+          textAlign: 'right',
+          fontVariantNumeric: 'tabular-nums',
+        }}
+      >
+        {v}
+      </span>
     </div>
   )
 }

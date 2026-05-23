@@ -70,9 +70,7 @@ export function SettingsToggle({
           height: 26,
           borderRadius: 999,
           border: '1px solid var(--glass-border)',
-          background: value
-            ? 'rgba(240,192,96,0.55)'
-            : 'rgba(255,252,245,0.08)',
+          background: value ? 'rgba(240,192,96,0.55)' : 'rgba(255,252,245,0.08)',
           cursor: disabled ? 'not-allowed' : 'pointer',
           position: 'relative',
           flexShrink: 0,
@@ -91,9 +89,7 @@ export function SettingsToggle({
             height: 18,
             borderRadius: '50%',
             background: value ? 'var(--color-lantern-gold)' : 'rgba(245,230,200,0.5)',
-            boxShadow: value
-              ? '0 1px 4px rgba(240,192,96,0.5)'
-              : '0 1px 3px rgba(0,0,0,0.25)',
+            boxShadow: value ? '0 1px 4px rgba(240,192,96,0.5)' : '0 1px 3px rgba(0,0,0,0.25)',
           }}
         />
       </button>

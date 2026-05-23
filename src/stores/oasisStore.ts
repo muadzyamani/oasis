@@ -19,23 +19,17 @@ interface OasisStoreState {
 
   // Actions
   setName: (name: string) => void
-  addElement: (
-    type: OasisElementType,
-    sessionId: string,
-    plantedAt: number,
-  ) => OasisElement
+  addElement: (type: OasisElementType, sessionId: string, plantedAt: number) => OasisElement
   addFocusMinutes: (minutes: number) => void
+  clearElements: () => void
   reset: () => void
 }
 
-const generateElementId = (): string =>
-  `el_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
+const generateElementId = (): string => `el_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
 
 const computeTier = (totalMinutes: number): GrowthTier => {
   // Find the highest tier whose minMinutes threshold has been crossed
-  const tier = [...GROWTH_TIERS]
-    .reverse()
-    .find((t) => totalMinutes >= t.minMinutes)
+  const tier = [...GROWTH_TIERS].reverse().find((t) => totalMinutes >= t.minMinutes)
   return (tier?.tier ?? 0) as GrowthTier
 }
 
@@ -45,10 +39,18 @@ const computeNextTierMinutes = (currentTier: GrowthTier): number | null => {
 }
 
 const SCENE_POSITIONS: Array<{ x: number; y: number }> = [
-  { x: 50, y: 70 }, { x: 35, y: 65 }, { x: 65, y: 68 },
-  { x: 25, y: 72 }, { x: 75, y: 63 }, { x: 45, y: 75 },
-  { x: 55, y: 60 }, { x: 30, y: 58 }, { x: 70, y: 72 },
-  { x: 20, y: 66 }, { x: 80, y: 65 }, { x: 40, y: 62 },
+  { x: 50, y: 70 },
+  { x: 35, y: 65 },
+  { x: 65, y: 68 },
+  { x: 25, y: 72 },
+  { x: 75, y: 63 },
+  { x: 45, y: 75 },
+  { x: 55, y: 60 },
+  { x: 30, y: 58 },
+  { x: 70, y: 72 },
+  { x: 20, y: 66 },
+  { x: 80, y: 65 },
+  { x: 40, y: 62 },
 ]
 
 const initialOasis: OasisState = {
@@ -66,8 +68,7 @@ export const useOasisStore = create<OasisStoreState>()(
       currentTier: 0,
       nextTierMinutesRequired: GROWTH_TIERS[1].minMinutes,
 
-      setName: (name) =>
-        set((state) => ({ oasis: { ...state.oasis, name } })),
+      setName: (name) => set((state) => ({ oasis: { ...state.oasis, name } })),
 
       addElement: (type, sessionId, plantedAt) => {
         const { oasis } = get()
@@ -100,6 +101,11 @@ export const useOasisStore = create<OasisStoreState>()(
           nextTierMinutesRequired: nextMinutes,
         })
       },
+
+      clearElements: () =>
+        set((state) => ({
+          oasis: { ...state.oasis, elements: [] },
+        })),
 
       reset: () =>
         set({

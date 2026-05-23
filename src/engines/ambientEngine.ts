@@ -24,8 +24,8 @@ export interface SceneColors {
 /* ─── Sky colour keyframes ───────────────────────────────────────────────── */
 
 interface SkyKeyframe {
-  minute: number   // minute of day (0–1439)
-  skyTop: [number, number, number]     // RGB
+  minute: number // minute of day (0–1439)
+  skyTop: [number, number, number] // RGB
   skyBottom: [number, number, number]
   groundColor: [number, number, number]
   waterColor: [number, number, number]
@@ -34,32 +34,143 @@ interface SkyKeyframe {
 
 /** 12 keyframes across 24h. Minute 0 = midnight. */
 const SKY_KEYFRAMES: SkyKeyframe[] = [
-  { minute: 0,    skyTop: [2,4,8],      skyBottom: [5,8,16],   groundColor: [16,8,5],   waterColor: [8,16,24],  groundFar: [12,10,6]  },  // midnight
-  { minute: 300,  skyTop: [13,8,32],    skyBottom: [58,26,24], groundColor: [90,48,32], waterColor: [26,42,48], groundFar: [72,42,28] },  // 5am pre-dawn
-  { minute: 360,  skyTop: [26,15,46],   skyBottom: [200,104,48], groundColor: [136,72,48], waterColor: [42,74,90], groundFar: [112,66,44] }, // 6am dawn
-  { minute: 420,  skyTop: [42,24,48],   skyBottom: [232,136,64], groundColor: [184,120,64], waterColor: [42,96,112], groundFar: [160,108,56] }, // 7am sunrise
-  { minute: 480,  skyTop: [58,112,176], skyBottom: [192,216,240], groundColor: [200,160,96], waterColor: [42,107,124], groundFar: [184,148,88] }, // 8am
-  { minute: 600,  skyTop: [40,104,160], skyBottom: [144,200,232], groundColor: [212,169,106], waterColor: [38,96,124], groundFar: [196,154,90] }, // 10am
-  { minute: 780,  skyTop: [26,80,144],  skyBottom: [120,184,232], groundColor: [192,144,80], waterColor: [32,96,112], groundFar: [180,136,80] }, // 1pm solar noon
-  { minute: 900,  skyTop: [32,96,168],  skyBottom: [136,192,232], groundColor: [200,152,88], waterColor: [36,104,120], groundFar: [188,144,86] }, // 3pm
-  { minute: 1020, skyTop: [26,64,128],  skyBottom: [208,128,64], groundColor: [160,112,56], waterColor: [30,88,112], groundFar: [148,104,52] }, // 5pm
-  { minute: 1080, skyTop: [24,48,96],   skyBottom: [220,100,48], groundColor: [136,88,52], waterColor: [28,72,90],  groundFar: [128,96,56] }, // 6pm
-  { minute: 1140, skyTop: [20,12,40],   skyBottom: [200,74,48], groundColor: [122,78,48], waterColor: [26,61,74],  groundFar: [138,94,56] }, // 7pm sunset
-  { minute: 1200, skyTop: [8,8,24],     skyBottom: [24,16,40], groundColor: [58,32,24], waterColor: [14,32,48],  groundFar: [48,32,24] }, // 8pm
-  { minute: 1320, skyTop: [4,6,16],     skyBottom: [8,12,24], groundColor: [24,14,8],  waterColor: [10,24,36],  groundFar: [20,14,8]  }, // 10pm
-  { minute: 1439, skyTop: [2,4,8],      skyBottom: [5,8,16],   groundColor: [16,8,5],   waterColor: [8,16,24],  groundFar: [12,10,6]  }, // 11:59pm → same as midnight
+  {
+    minute: 0,
+    skyTop: [2, 4, 8],
+    skyBottom: [5, 8, 16],
+    groundColor: [16, 8, 5],
+    waterColor: [8, 16, 24],
+    groundFar: [12, 10, 6],
+  }, // midnight
+  {
+    minute: 300,
+    skyTop: [13, 8, 32],
+    skyBottom: [58, 26, 24],
+    groundColor: [90, 48, 32],
+    waterColor: [26, 42, 48],
+    groundFar: [72, 42, 28],
+  }, // 5am pre-dawn
+  {
+    minute: 360,
+    skyTop: [26, 15, 46],
+    skyBottom: [200, 104, 48],
+    groundColor: [136, 72, 48],
+    waterColor: [42, 74, 90],
+    groundFar: [112, 66, 44],
+  }, // 6am dawn
+  {
+    minute: 420,
+    skyTop: [42, 24, 48],
+    skyBottom: [232, 136, 64],
+    groundColor: [184, 120, 64],
+    waterColor: [42, 96, 112],
+    groundFar: [160, 108, 56],
+  }, // 7am sunrise
+  {
+    minute: 480,
+    skyTop: [58, 112, 176],
+    skyBottom: [192, 216, 240],
+    groundColor: [200, 160, 96],
+    waterColor: [42, 107, 124],
+    groundFar: [184, 148, 88],
+  }, // 8am
+  {
+    minute: 600,
+    skyTop: [40, 104, 160],
+    skyBottom: [144, 200, 232],
+    groundColor: [212, 169, 106],
+    waterColor: [38, 96, 124],
+    groundFar: [196, 154, 90],
+  }, // 10am
+  {
+    minute: 780,
+    skyTop: [26, 80, 144],
+    skyBottom: [120, 184, 232],
+    groundColor: [192, 144, 80],
+    waterColor: [32, 96, 112],
+    groundFar: [180, 136, 80],
+  }, // 1pm solar noon
+  {
+    minute: 900,
+    skyTop: [32, 96, 168],
+    skyBottom: [136, 192, 232],
+    groundColor: [200, 152, 88],
+    waterColor: [36, 104, 120],
+    groundFar: [188, 144, 86],
+  }, // 3pm
+  {
+    minute: 1020,
+    skyTop: [26, 64, 128],
+    skyBottom: [208, 128, 64],
+    groundColor: [160, 112, 56],
+    waterColor: [30, 88, 112],
+    groundFar: [148, 104, 52],
+  }, // 5pm
+  {
+    minute: 1080,
+    skyTop: [24, 48, 96],
+    skyBottom: [220, 100, 48],
+    groundColor: [136, 88, 52],
+    waterColor: [28, 72, 90],
+    groundFar: [128, 96, 56],
+  }, // 6pm
+  {
+    minute: 1140,
+    skyTop: [20, 12, 40],
+    skyBottom: [200, 74, 48],
+    groundColor: [122, 78, 48],
+    waterColor: [26, 61, 74],
+    groundFar: [138, 94, 56],
+  }, // 7pm sunset
+  {
+    minute: 1200,
+    skyTop: [8, 8, 24],
+    skyBottom: [24, 16, 40],
+    groundColor: [58, 32, 24],
+    waterColor: [14, 32, 48],
+    groundFar: [48, 32, 24],
+  }, // 8pm
+  {
+    minute: 1320,
+    skyTop: [4, 6, 16],
+    skyBottom: [8, 12, 24],
+    groundColor: [24, 14, 8],
+    waterColor: [10, 24, 36],
+    groundFar: [20, 14, 8],
+  }, // 10pm
+  {
+    minute: 1439,
+    skyTop: [2, 4, 8],
+    skyBottom: [5, 8, 16],
+    groundColor: [16, 8, 5],
+    waterColor: [8, 16, 24],
+    groundFar: [12, 10, 6],
+  }, // 11:59pm → same as midnight
 ]
 
 function lerp(a: number, b: number, t: number): number {
   return a + (b - a) * t
 }
 
-function lerpRgb(a: [number, number, number], b: [number, number, number], t: number): [number, number, number] {
+function lerpRgb(
+  a: [number, number, number],
+  b: [number, number, number],
+  t: number,
+): [number, number, number] {
   return [lerp(a[0], b[0], t), lerp(a[1], b[1], t), lerp(a[2], b[2], t)]
 }
 
 function toHex(rgb: [number, number, number]): string {
-  return '#' + rgb.map((v) => Math.round(Math.max(0, Math.min(255, v))).toString(16).padStart(2, '0')).join('')
+  return (
+    '#' +
+    rgb
+      .map((v) =>
+        Math.round(Math.max(0, Math.min(255, v)))
+          .toString(16)
+          .padStart(2, '0'),
+      )
+      .join('')
+  )
 }
 
 export function interpolateSkyColors(minuteOfDay: number): SceneColors {
@@ -77,22 +188,52 @@ export function interpolateSkyColors(minuteOfDay: number): SceneColors {
   const t = hi.minute === lo.minute ? 0 : (minuteOfDay - lo.minute) / (hi.minute - lo.minute)
 
   return {
-    skyTop:      toHex(lerpRgb(lo.skyTop, hi.skyTop, t)),
-    skyBottom:   toHex(lerpRgb(lo.skyBottom, hi.skyBottom, t)),
+    skyTop: toHex(lerpRgb(lo.skyTop, hi.skyTop, t)),
+    skyBottom: toHex(lerpRgb(lo.skyBottom, hi.skyBottom, t)),
     groundColor: toHex(lerpRgb(lo.groundColor, hi.groundColor, t)),
-    waterColor:  toHex(lerpRgb(lo.waterColor, hi.waterColor, t)),
-    groundFar:   toHex(lerpRgb(lo.groundFar, hi.groundFar, t)),
+    waterColor: toHex(lerpRgb(lo.waterColor, hi.waterColor, t)),
+    groundFar: toHex(lerpRgb(lo.groundFar, hi.groundFar, t)),
   }
 }
 
 /* ─── Backward-compat: 5-bucket scene colors (for GroundLayer/WaterLayer) ─ */
 
 export const SCENE_COLORS: Record<TimeOfDay, SceneColors> = {
-  dawn:      { skyTop: '#1a0f2e', skyBottom: '#e8845a', groundColor: '#b8784a', waterColor: '#3d6e7e', groundFar: '#c4956a' },
-  morning:   { skyTop: '#4a88c5', skyBottom: '#b8d4f0', groundColor: '#d4a96a', waterColor: '#2a6b7c', groundFar: '#c89a5a' },
-  afternoon: { skyTop: '#2868a0', skyBottom: '#d4885a', groundColor: '#c08050', waterColor: '#1e5a6b', groundFar: '#b87040' },
-  dusk:      { skyTop: '#140c28', skyBottom: '#b84a35', groundColor: '#7a4e30', waterColor: '#1a3d4a', groundFar: '#8a5e38' },
-  night:     { skyTop: '#050a14', skyBottom: '#0d1b2a', groundColor: '#180e05', waterColor: '#0a2230', groundFar: '#1a1008' },
+  dawn: {
+    skyTop: '#1a0f2e',
+    skyBottom: '#e8845a',
+    groundColor: '#b8784a',
+    waterColor: '#3d6e7e',
+    groundFar: '#c4956a',
+  },
+  morning: {
+    skyTop: '#4a88c5',
+    skyBottom: '#b8d4f0',
+    groundColor: '#d4a96a',
+    waterColor: '#2a6b7c',
+    groundFar: '#c89a5a',
+  },
+  afternoon: {
+    skyTop: '#2868a0',
+    skyBottom: '#d4885a',
+    groundColor: '#c08050',
+    waterColor: '#1e5a6b',
+    groundFar: '#b87040',
+  },
+  dusk: {
+    skyTop: '#140c28',
+    skyBottom: '#b84a35',
+    groundColor: '#7a4e30',
+    waterColor: '#1a3d4a',
+    groundFar: '#8a5e38',
+  },
+  night: {
+    skyTop: '#050a14',
+    skyBottom: '#0d1b2a',
+    groundColor: '#180e05',
+    waterColor: '#0a2230',
+    groundFar: '#1a1008',
+  },
 }
 
 /* ─── Solar geometry ────────────────────────────────────────────────────── */
@@ -108,7 +249,7 @@ export function computeSolarElevation(
 ): number {
   const dayDuration = sunsetMinute - sunriseMinute
   if (dayDuration <= 0) return -1
-  const t = (minuteOfDay - sunriseMinute) / dayDuration  // 0 at sunrise, 1 at sunset
+  const t = (minuteOfDay - sunriseMinute) / dayDuration // 0 at sunrise, 1 at sunset
   if (t < 0 || t > 1) return -Math.abs(Math.sin((t < 0 ? t : t - 1) * Math.PI * 0.5)) * 0.5 - 0.01
   return Math.sin(t * Math.PI) // 0→1→0 over the day
 }
@@ -127,7 +268,7 @@ export function computeSunPosition(
   const t = (minuteOfDay - sunriseMinute) / dayDuration
   // Return position even slightly before/after horizon for smooth fade
   if (t < -0.02 || t > 1.02) return null
-  const x = 5 + t * 90                             // 5% → 95%
+  const x = 5 + t * 90 // 5% → 95%
   const y = 87 - 77 * Math.sin(Math.max(0, Math.min(1, t)) * Math.PI) // arc
   return { x, y }
 }
@@ -157,7 +298,7 @@ export function computeMoonPosition(
   // Buffer: show moon 15 min before sunset / after sunrise for smooth fade
   if (t < -0.015 || t > 1.015) return null
 
-  const x = 95 - Math.max(0, Math.min(1, t)) * 90          // 95% → 5%
+  const x = 95 - Math.max(0, Math.min(1, t)) * 90 // 95% → 5%
   const y = 87 - 77 * Math.sin(Math.max(0, Math.min(1, t)) * Math.PI)
   return { x, y }
 }
@@ -182,7 +323,7 @@ const LUNAR_CYCLE_MS = 29.530588853 * 24 * 60 * 60 * 1000
  */
 export function getLunarPhase(date: Date): number {
   const elapsed = date.getTime() - KNOWN_NEW_MOON_MS
-  return ((elapsed % LUNAR_CYCLE_MS) + LUNAR_CYCLE_MS) % LUNAR_CYCLE_MS / LUNAR_CYCLE_MS
+  return (((elapsed % LUNAR_CYCLE_MS) + LUNAR_CYCLE_MS) % LUNAR_CYCLE_MS) / LUNAR_CYCLE_MS
 }
 
 /* ─── Sun visual properties ──────────────────────────────────────────────── */

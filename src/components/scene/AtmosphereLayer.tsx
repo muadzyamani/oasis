@@ -9,7 +9,7 @@ interface AtmosphereLayerProps {
 // Seeded dust particles
 const DUST = Array.from({ length: 10 }, (_, i) => ({
   id: i,
-  startY: 30 + (i * 23) % 40,
+  startY: 30 + ((i * 23) % 40),
   size: 1 + (i % 2),
   duration: 12 + (i % 5) * 3,
   delay: i * 1.4,
@@ -17,9 +17,7 @@ const DUST = Array.from({ length: 10 }, (_, i) => ({
 }))
 
 export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: AtmosphereLayerProps) {
-  const focusGlowOpacity = sessionActive && !isBreak
-    ? 0.06 + sessionProgress * 0.1
-    : 0
+  const focusGlowOpacity = sessionActive && !isBreak ? 0.06 + sessionProgress * 0.1 : 0
 
   return (
     <div className="absolute inset-0 pointer-events-none" style={{ zIndex: 6 }}>
@@ -30,7 +28,8 @@ export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: Atm
           style={{
             position: 'absolute',
             top: `${p.startY}%`,
-            width: p.size, height: p.size,
+            width: p.size,
+            height: p.size,
             borderRadius: '50%',
             background: 'rgba(212, 169, 106, 1)',
             opacity: p.opacity,
@@ -74,7 +73,8 @@ export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: Atm
           bottom: '22%',
           left: '50%',
           transform: 'translateX(-50%)',
-          width: 80, height: 80,
+          width: 80,
+          height: 80,
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(240,192,96,0.5), transparent 70%)',
         }}

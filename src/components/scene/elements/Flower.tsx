@@ -3,7 +3,10 @@ import { motion } from 'framer-motion'
 export function Flower() {
   return (
     <motion.svg
-      width="36" height="52" viewBox="0 0 36 52" fill="none"
+      width="36"
+      height="52"
+      viewBox="0 0 36 52"
+      fill="none"
       animate={{ rotate: [-2, 2, -2] }}
       transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
       style={{ transformOrigin: 'bottom center', overflow: 'visible' }}
@@ -16,7 +19,8 @@ export function Flower() {
           key={i}
           cx={18 + Math.cos((angle * Math.PI) / 180) * 7}
           cy={16 + Math.sin((angle * Math.PI) / 180) * 7}
-          rx="4.5" ry="3"
+          rx="4.5"
+          ry="3"
           transform={`rotate(${angle} ${18 + Math.cos((angle * Math.PI) / 180) * 7} ${16 + Math.sin((angle * Math.PI) / 180) * 7})`}
           fill="#e8a878"
           opacity="0.9"

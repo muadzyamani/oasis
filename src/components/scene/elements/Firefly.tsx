@@ -6,11 +6,14 @@ interface FireflyProps {
 }
 
 export function Firefly({ seed = 0 }: FireflyProps) {
-  const { dx, dy, duration } = useMemo(() => ({
-    dx: 8 + (seed % 3) * 4,
-    dy: 6 + (seed % 2) * 3,
-    duration: 3 + (seed % 4) * 0.8,
-  }), [seed])
+  const { dx, dy, duration } = useMemo(
+    () => ({
+      dx: 8 + (seed % 3) * 4,
+      dy: 6 + (seed % 2) * 3,
+      duration: 3 + (seed % 4) * 0.8,
+    }),
+    [seed],
+  )
 
   return (
     <motion.div

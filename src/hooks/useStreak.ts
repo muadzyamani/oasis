@@ -15,8 +15,13 @@ export interface UseStreakReturn {
 }
 
 export function useStreak(): UseStreakReturn {
-  const { currentStreakDays, longestStreakDays, totalFocusMinutes, totalSessionsCompleted, dailyRecords } =
-    useStatsStore()
+  const {
+    currentStreakDays,
+    longestStreakDays,
+    totalFocusMinutes,
+    totalSessionsCompleted,
+    dailyRecords,
+  } = useStatsStore()
   const today = getTodayRecord(dailyRecords)
 
   return {

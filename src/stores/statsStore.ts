@@ -95,9 +95,7 @@ export const useStatsStore = create<StatsState>()(
             ]
 
         // Keep only last 365 days
-        const trimmed = updatedRecords
-          .sort((a, b) => b.date.localeCompare(a.date))
-          .slice(0, 365)
+        const trimmed = updatedRecords.sort((a, b) => b.date.localeCompare(a.date)).slice(0, 365)
 
         const { current, longest } = computeStreak(trimmed)
 

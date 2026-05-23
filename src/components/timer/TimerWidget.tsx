@@ -17,7 +17,10 @@ import type { SessionType } from '@/types/session.types'
    ========================================================================== */
 
 interface TimerWidgetProps {
-  onPreviewChange?: (preview: ReturnType<typeof useTimer>['previewElement'], progress: number) => void
+  onPreviewChange?: (
+    preview: ReturnType<typeof useTimer>['previewElement'],
+    progress: number,
+  ) => void
 }
 
 export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
@@ -35,7 +38,7 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
   useEffect(() => {
     if (!timer.plantedElementId) return
     const planted = growth.oasis.elements.find((e) => e.id === timer.plantedElementId)
-    
+
     const handle = setTimeout(() => {
       if (planted) setToastMsg(buildToastMessage(planted.type, false))
       timer.clearPlanted()
@@ -50,7 +53,9 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
     const completedFocus = growth.oasis.elements.length
     const nextType: SessionType =
       timer.sessionType === 'focus'
-        ? completedFocus % 4 === 3 ? 'long-break' : 'short-break'
+        ? completedFocus % 4 === 3
+          ? 'long-break'
+          : 'short-break'
         : 'focus'
     timer.switchType(nextType)
   }
@@ -96,17 +101,28 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
               <div
                 aria-hidden="true"
                 style={{
-                  position: 'absolute', top: 0, left: '10%', right: '10%', height: 1,
-                  background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.55) 70%, transparent)',
+                  position: 'absolute',
+                  top: 0,
+                  left: '10%',
+                  right: '10%',
+                  height: 1,
+                  background:
+                    'linear-gradient(90deg, transparent, rgba(255,255,255,0.55) 30%, rgba(255,255,255,0.55) 70%, transparent)',
                 }}
               />
 
               {/* Oasis name */}
-              <p style={{
-                fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 500,
-                letterSpacing: '0.12em', textTransform: 'uppercase' as const,
-                color: 'var(--color-text-on-dark)', marginBottom: 20,
-              }}>
+              <p
+                style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: '1rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase' as const,
+                  color: 'var(--color-text-on-dark)',
+                  marginBottom: 20,
+                }}
+              >
                 {growth.oasis.name}
               </p>
 
@@ -114,19 +130,29 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
               <div style={{ marginBottom: 28 }}>
                 <TimerRing progress={timer.progress} sessionActive={false} isBreak={isBreak}>
                   <div style={{ textAlign: 'center' }}>
-                    <div style={{
-                      fontFamily: 'var(--font-mono)', fontWeight: 400,
-                      fontSize: '3.6rem', lineHeight: 1, letterSpacing: '-0.02em',
-                      color: '#ffffff',
-                      textShadow: '0 1px 12px rgba(255,255,255,0.15)',
-                    }}>
+                    <div
+                      style={{
+                        fontFamily: 'var(--font-mono)',
+                        fontWeight: 400,
+                        fontSize: '3.6rem',
+                        lineHeight: 1,
+                        letterSpacing: '-0.02em',
+                        color: '#ffffff',
+                        textShadow: '0 1px 12px rgba(255,255,255,0.15)',
+                      }}
+                    >
                       {format.countdown(timer.timeRemainingSeconds)}
                     </div>
                     {timer.status === 'complete' && (
-                      <p style={{
-                        fontFamily: 'var(--font-display)', fontSize: '0.8rem',
-                        color: 'var(--color-lantern-gold)', marginTop: 6, letterSpacing: '0.08em',
-                      }}>
+                      <p
+                        style={{
+                          fontFamily: 'var(--font-display)',
+                          fontSize: '0.8rem',
+                          color: 'var(--color-lantern-gold)',
+                          marginTop: 6,
+                          letterSpacing: '0.08em',
+                        }}
+                      >
                         {isBreak ? 'Rest complete.' : 'Well done.'}
                       </p>
                     )}
@@ -152,11 +178,18 @@ export function TimerWidget({ onPreviewChange }: TimerWidgetProps) {
                 style={{ borderRadius: 999, padding: '6px 14px', gap: 6, marginTop: 16 }}
               >
                 <span style={{ color: 'var(--color-lantern-gold)', fontSize: '0.7rem' }}>✦</span>
-                <span style={{
-                  fontFamily: 'var(--font-body)', fontSize: '0.75rem', fontWeight: 400,
-                  color: 'var(--color-text-on-dark)', letterSpacing: '0.03em',
-                }}>
-                  {streak.currentStreakDays === 0 ? 'Start your streak' : `${streak.currentStreakDays} day streak`}
+                <span
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.75rem',
+                    fontWeight: 400,
+                    color: 'var(--color-text-on-dark)',
+                    letterSpacing: '0.03em',
+                  }}
+                >
+                  {streak.currentStreakDays === 0
+                    ? 'Start your streak'
+                    : `${streak.currentStreakDays} day streak`}
                 </span>
               </div>
             </div>

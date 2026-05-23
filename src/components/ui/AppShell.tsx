@@ -15,10 +15,7 @@ interface AppShellProps {
 
 export function AppShell({ children }: AppShellProps) {
   return (
-    <div
-      className="relative w-full h-full overflow-hidden"
-      style={{ isolation: 'isolate' }}
-    >
+    <div className="relative w-full h-full overflow-hidden" style={{ isolation: 'isolate' }}>
       {children}
     </div>
   )

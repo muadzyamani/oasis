@@ -14,9 +14,7 @@ import type { OasisElementType } from '@/types/oasis.types'
    Also computes the preview element shown during an active session.
    ========================================================================== */
 
-type WorkerMsg =
-  | { type: 'TICK'; timeRemaining: number }
-  | { type: 'COMPLETE' }
+type WorkerMsg = { type: 'TICK'; timeRemaining: number } | { type: 'COMPLETE' }
 
 export interface PreviewElement {
   type: OasisElementType
@@ -29,7 +27,7 @@ export interface UseTimerReturn {
   sessionType: SessionType
   progress: number
   plantedElementId: string | null
-  previewElement: PreviewElement | null   // shows during active focus session
+  previewElement: PreviewElement | null // shows during active focus session
   start: () => void
   pause: () => void
   resume: () => void
@@ -55,11 +53,9 @@ export function useTimer(): UseTimerReturn {
           useStatsStore.getState().recordCompletedSession(completed)
           const { oasis } = useOasisStore.getState()
           const event = resolveGrowthEvent(completed, oasis)
-          const planted = useOasisStore.getState().addElement(
-            event.elementType,
-            completed.id,
-            event.plantedAt,
-          )
+          const planted = useOasisStore
+            .getState()
+            .addElement(event.elementType, completed.id, event.plantedAt)
           useOasisStore.getState().addFocusMinutes(completed.durationMinutes)
           setPlantedElementId(planted.id)
           setPreviewElement(null) // preview becomes the real element
@@ -73,10 +69,9 @@ export function useTimer(): UseTimerReturn {
   })
 
   useEffect(() => {
-    workerRef.current = new Worker(
-      new URL('../engines/timerWorker.ts', import.meta.url),
-      { type: 'module' },
-    )
+    workerRef.current = new Worker(new URL('../engines/timerWorker.ts', import.meta.url), {
+      type: 'module',
+    })
     workerRef.current.onmessage = (e: MessageEvent<WorkerMsg>) => {
       if (e.data.type === 'TICK') {
         useTimerStore.setState({ timeRemainingSeconds: e.data.timeRemaining })
@@ -132,14 +127,11 @@ export function useTimer(): UseTimerReturn {
     setPreviewElement(null) // clear preview on abandon
   }, [])
 
-  const switchType = useCallback(
-    (type: SessionType) => {
-      workerRef.current?.postMessage({ type: 'STOP' })
-      useTimerStore.getState().switchSessionType(type)
-      setPreviewElement(null)
-    },
-    [],
-  )
+  const switchType = useCallback((type: SessionType) => {
+    workerRef.current?.postMessage({ type: 'STOP' })
+    useTimerStore.getState().switchSessionType(type)
+    setPreviewElement(null)
+  }, [])
 
   const { status, timeRemainingSeconds, sessionType, config } = useTimerStore()
 

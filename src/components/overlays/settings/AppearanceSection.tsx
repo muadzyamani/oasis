@@ -63,10 +63,7 @@ export function AppearanceSection() {
                   borderRadius: 999,
                   border: 'none',
                   cursor: 'pointer',
-                  background:
-                    theme === value
-                      ? 'rgba(240,192,96,0.35)'
-                      : 'transparent',
+                  background: theme === value ? 'rgba(240,192,96,0.35)' : 'transparent',
                   color:
                     theme === value
                       ? 'var(--color-lantern-gold)'

@@ -18,18 +18,31 @@ interface FloraLayerProps {
 
 function ElementComponent({ type, seed }: { type: OasisElement['type']; seed: number }) {
   switch (type) {
-    case 'sprout':    return <Sprout />
-    case 'flower':    return <Flower />
-    case 'reed':      return <Reed />
-    case 'palm':      return <Palm seed={seed} />
-    case 'lantern':   return <Lantern />
-    case 'lily':      return <Lily />
-    case 'firefly':   return <Firefly seed={seed} />
-    default:          return <Sprout />
+    case 'sprout':
+      return <Sprout />
+    case 'flower':
+      return <Flower />
+    case 'reed':
+      return <Reed />
+    case 'palm':
+      return <Palm seed={seed} />
+    case 'lantern':
+      return <Lantern />
+    case 'lily':
+      return <Lily />
+    case 'firefly':
+      return <Firefly seed={seed} />
+    default:
+      return <Sprout />
   }
 }
 
-export function FloraLayer({ elements, newElementId, preview, previewProgress = 0 }: FloraLayerProps) {
+export function FloraLayer({
+  elements,
+  newElementId,
+  preview,
+  previewProgress = 0,
+}: FloraLayerProps) {
   // Preview opacity: 0.25 → 0.72 as session progresses
   const previewOpacity = 0.25 + previewProgress * 0.47
   // Preview scale: 0.45 → 0.95

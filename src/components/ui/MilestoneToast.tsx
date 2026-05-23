@@ -64,13 +64,13 @@ export function MilestoneToast({ message, onDismiss }: MilestoneToastProps) {
 export function buildToastMessage(elementType: string, tierUp: boolean, tierName?: string): string {
   if (tierUp && tierName) return `Your oasis reaches the ${tierName} stage.`
   const messages: Record<string, string> = {
-    sprout:    'A new sprout has taken root.',
-    flower:    'A flower opens in the silence.',
-    reed:      'Reeds grow at the water\'s edge.',
-    palm:      'A palm rises toward the sky.',
-    lantern:   'A lantern lights itself.',
-    lily:      'A lotus rests on the water.',
-    firefly:   'Fireflies emerge at dusk.',
+    sprout: 'A new sprout has taken root.',
+    flower: 'A flower opens in the silence.',
+    reed: "Reeds grow at the water's edge.",
+    palm: 'A palm rises toward the sky.',
+    lantern: 'A lantern lights itself.',
+    lily: 'A lotus rests on the water.',
+    firefly: 'Fireflies emerge at dusk.',
     waterfall: 'The sound of water fills your oasis.',
   }
   return messages[elementType] ?? 'Your oasis grows.'

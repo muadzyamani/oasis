@@ -11,6 +11,7 @@ import { TimerSection } from './settings/TimerSection'
 import { AutomationSection } from './settings/AutomationSection'
 import { AppearanceSection } from './settings/AppearanceSection'
 import { SundialSection } from './settings/SundialSection'
+import { OasisSection } from './settings/OasisSection'
 
 interface SettingsPanelProps {
   open: boolean
@@ -209,14 +210,11 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
                 transition: 'background 150ms, color 150ms',
               }}
               onMouseEnter={(e) => {
-                ;(e.currentTarget as HTMLButtonElement).style.background =
-                  'var(--glass-bg-hover)'
-                ;(e.currentTarget as HTMLButtonElement).style.color =
-                  'var(--color-text-on-dark)'
+                ;(e.currentTarget as HTMLButtonElement).style.background = 'var(--glass-bg-hover)'
+                ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--color-text-on-dark)'
               }}
               onMouseLeave={(e) => {
-                ;(e.currentTarget as HTMLButtonElement).style.background =
-                  'var(--glass-bg)'
+                ;(e.currentTarget as HTMLButtonElement).style.background = 'var(--glass-bg)'
                 ;(e.currentTarget as HTMLButtonElement).style.color =
                   'var(--color-text-on-dark-muted)'
               }}
@@ -248,6 +246,8 @@ export function SettingsPanel({ open, onClose }: SettingsPanelProps) {
             <AppearanceSection />
             <Divider />
             <SundialSection />
+            <Divider />
+            <OasisSection />
           </div>
         </div>
       </motion.div>

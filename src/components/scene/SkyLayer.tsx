@@ -23,11 +23,11 @@ const STARS = Array.from({ length: 65 }, (_, i) => {
   const randSize = Math.abs(Math.sin(i * 45.123))
   const randOpacity = Math.abs(Math.sin(i * 67.891))
   const randTwinkle = Math.abs(Math.sin(i * 89.123))
-  
+
   return {
     id: i,
     x: randX * 100, // 0 to 100%
-    y: randY * 65,  // 0 to 65% (top part of sky)
+    y: randY * 65, // 0 to 65% (top part of sky)
     size: randSize > 0.8 ? 2.5 : randSize > 0.5 ? 2 : 1,
     baseOpacity: 0.25 + randOpacity * 0.4,
     twinkleDuration: 2 + randTwinkle * 2.5,
@@ -48,11 +48,11 @@ const STARS = Array.from({ length: 65 }, (_, i) => {
  * ─────────────────────────────────────────────────────────────────────────── */
 
 interface SunDiscProps {
-  elevation: number          // 0 (horizon) → 1 (zenith)
-  size: number               // px diameter of sun disc
-  discColor: string          // edge colour (warm at horizon, golden at zenith)
-  glowColor: string          // glow rgba string
-  glowRadius: number         // px radius of outer glow
+  elevation: number // 0 (horizon) → 1 (zenith)
+  size: number // px diameter of sun disc
+  discColor: string // edge colour (warm at horizon, golden at zenith)
+  glowColor: string // glow rgba string
+  glowRadius: number // px radius of outer glow
 }
 
 function SunDisc({ elevation, size, discColor, glowColor, glowRadius }: SunDiscProps) {
@@ -69,9 +69,9 @@ function SunDisc({ elevation, size, discColor, glowColor, glowRadius }: SunDiscP
 
   // Gradient stops — colour temperature follows solar elevation
   // Near horizon: orange-red core; zenith: pure white core
-  const stopCenter = e > 0.5 ? '#ffffff'    : e > 0.2 ? '#fff8e0' : '#fff0c0'
-  const stopMid    = e > 0.5 ? '#fff5b0'    : e > 0.2 ? '#ffc84a' : '#ffaa28'
-  const stopEdge   = discColor  // comes from getSunProps — already elevation-aware
+  const stopCenter = e > 0.5 ? '#ffffff' : e > 0.2 ? '#fff8e0' : '#fff0c0'
+  const stopMid = e > 0.5 ? '#fff5b0' : e > 0.2 ? '#ffc84a' : '#ffaa28'
+  const stopEdge = discColor // comes from getSunProps — already elevation-aware
 
   // Glow: parse the rgba string to build layered SVG fills
   // Two-layer glow: inner tight halo + outer diffuse atmosphere
@@ -80,7 +80,7 @@ function SunDisc({ elevation, size, discColor, glowColor, glowRadius }: SunDiscP
 
   // Atmospheric scattering band at horizon (warm orange smear below sun)
   const showScatter = e < 0.25
-  const scatterOpacity = (0.25 - e) / 0.25 * 0.5
+  const scatterOpacity = ((0.25 - e) / 0.25) * 0.5
 
   return (
     <svg
@@ -98,30 +98,34 @@ function SunDisc({ elevation, size, discColor, glowColor, glowRadius }: SunDiscP
       <defs>
         {/* Sun disc — proper radial gradient, no clipping */}
         <radialGradient id="oasis-sun-disc" cx="42%" cy="38%" r="65%">
-          <stop offset="0%"   stopColor={stopCenter} />
-          <stop offset="15%"  stopColor={stopCenter} />
-          <stop offset="55%"  stopColor={stopMid} />
-          <stop offset="88%"  stopColor={stopEdge} />
+          <stop offset="0%" stopColor={stopCenter} />
+          <stop offset="15%" stopColor={stopCenter} />
+          <stop offset="55%" stopColor={stopMid} />
+          <stop offset="88%" stopColor={stopEdge} />
           <stop offset="100%" stopColor={stopEdge} />
         </radialGradient>
 
         {/* Inner halo — tight corona */}
         <radialGradient id="oasis-sun-halo" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={glowColor} stopOpacity="0.55" />
-          <stop offset="45%"  stopColor={glowColor} stopOpacity="0.22" />
+          <stop offset="0%" stopColor={glowColor} stopOpacity="0.55" />
+          <stop offset="45%" stopColor={glowColor} stopOpacity="0.22" />
           <stop offset="100%" stopColor={glowColor} stopOpacity="0" />
         </radialGradient>
 
         {/* Outer glow — diffuse atmosphere */}
         <radialGradient id="oasis-sun-outer" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stopColor={glowColor} stopOpacity="0.18" />
-          <stop offset="60%"  stopColor={glowColor} stopOpacity="0.06" />
+          <stop offset="0%" stopColor={glowColor} stopOpacity="0.18" />
+          <stop offset="60%" stopColor={glowColor} stopOpacity="0.06" />
           <stop offset="100%" stopColor={glowColor} stopOpacity="0" />
         </radialGradient>
 
         {/* Atmospheric scatter at horizon — elongated ellipse below sun */}
         <radialGradient id="oasis-sun-scatter" cx="50%" cy="20%" r="50%">
-          <stop offset="0%"   stopColor={glowColor} stopOpacity={`${(scatterOpacity * 0.9).toFixed(2)}`} />
+          <stop
+            offset="0%"
+            stopColor={glowColor}
+            stopOpacity={`${(scatterOpacity * 0.9).toFixed(2)}`}
+          />
           <stop offset="100%" stopColor={glowColor} stopOpacity="0" />
         </radialGradient>
 
@@ -134,33 +138,28 @@ function SunDisc({ elevation, size, discColor, glowColor, glowRadius }: SunDiscP
       {/* Atmospheric scatter band (horizon only) */}
       {showScatter && (
         <ellipse
-          cx={cx} cy={cy + R * 0.6}
-          rx={outerGlowR * 1.4} ry={outerGlowR * 0.8}
+          cx={cx}
+          cy={cy + R * 0.6}
+          rx={outerGlowR * 1.4}
+          ry={outerGlowR * 0.8}
           fill="url(#oasis-sun-scatter)"
         />
       )}
 
       {/* Outer diffuse glow */}
-      <circle
-        cx={cx} cy={cy}
-        r={R + outerGlowR}
-        fill="url(#oasis-sun-outer)"
-      />
+      <circle cx={cx} cy={cy} r={R + outerGlowR} fill="url(#oasis-sun-outer)" />
 
       {/* Inner halo with blur */}
       <circle
-        cx={cx} cy={cy}
+        cx={cx}
+        cy={cy}
         r={R + innerGlowR}
         fill="url(#oasis-sun-halo)"
         filter="url(#oasis-sun-glow-blur)"
       />
 
       {/* Sun disc — SVG <circle> fill, no border-radius, no clipping artifact */}
-      <circle
-        cx={cx} cy={cy}
-        r={R}
-        fill="url(#oasis-sun-disc)"
-      />
+      <circle cx={cx} cy={cy} r={R} fill="url(#oasis-sun-disc)" />
     </svg>
   )
 }
@@ -212,26 +211,42 @@ function MoonDisc({ phase, size }: { phase: number; size: number }) {
           <circle cx={cx} cy={cy} r={R} />
         </clipPath>
       </defs>
-      <circle cx={cx} cy={cy} r={R} fill={phase < 0.01 || phase > 0.99 ? 'rgba(20,20,40,0.6)' : '#0a1020'} clipPath={`url(#moon-clip-${size})`} />
+      <circle
+        cx={cx}
+        cy={cy}
+        r={R}
+        fill={phase < 0.01 || phase > 0.99 ? 'rgba(20,20,40,0.6)' : '#0a1020'}
+        clipPath={`url(#moon-clip-${size})`}
+      />
       {illuminatedPath && (
         <path d={illuminatedPath} fill={moonLight} clipPath={`url(#moon-clip-${size})`} />
       )}
-      <circle cx={cx} cy={cy} r={R - 1} fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth={1} clipPath={`url(#moon-clip-${size})`} />
+      <circle
+        cx={cx}
+        cy={cy}
+        r={R - 1}
+        fill="none"
+        stroke="rgba(255,255,255,0.08)"
+        strokeWidth={1}
+        clipPath={`url(#moon-clip-${size})`}
+      />
     </svg>
   )
 }
 
 /* ─── SkyLayer ───────────────────────────────────────────────────────────── */
 
-
 export function SkyLayer({ atmosphere }: SkyLayerProps) {
-  const { sunPosition, moonPosition, solarElevation, starsOpacity, lunarPhase, skyColors } = atmosphere
+  const { sunPosition, moonPosition, solarElevation, starsOpacity, lunarPhase, skyColors } =
+    atmosphere
   const isDevOverride = useDevStore((s) => s.timeOverride !== null)
 
   // When dev override is active, use instant transitions so scrubbing is responsive.
   // In production / real-clock mode, use 90s for realistic imperceptible movement.
   const skyTransition = isDevOverride ? 'background 0.3s ease' : 'background 90s linear'
-  const posTransition = isDevOverride ? 'left 0.3s ease, top 0.3s ease' : 'left 90s linear, top 90s linear'
+  const posTransition = isDevOverride
+    ? 'left 0.3s ease, top 0.3s ease'
+    : 'left 90s linear, top 90s linear'
   const opacityTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 180s linear'
   const starsTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 120s linear'
   const overlayTransition = isDevOverride ? 'opacity 0.3s ease' : 'opacity 90s linear'
@@ -241,23 +256,28 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
 
   // Sun opacity: full at elevation > 0.05, fade in/out near horizon
   const sunOpacity = sunPosition
-    ? (solarElevation >= 0.05 ? 1 : solarElevation > 0 ? solarElevation / 0.05 : 0)
+    ? solarElevation >= 0.05
+      ? 1
+      : solarElevation > 0
+        ? solarElevation / 0.05
+        : 0
     : 0
 
   // Moon opacity: full when sun is well below horizon (elevation < -0.05)
   const absSolar = Math.abs(solarElevation)
   const moonOpacity = moonPosition
-    ? (solarElevation <= -0.05 ? 1 : solarElevation < 0 ? absSolar / 0.05 : 0)
+    ? solarElevation <= -0.05
+      ? 1
+      : solarElevation < 0
+        ? absSolar / 0.05
+        : 0
     : 0
 
-  const moonElevation = moonPosition
-    ? Math.sin(Math.PI * (1 - (moonPosition.y - 10) / 77))
-    : 0
+  const moonElevation = moonPosition ? Math.sin(Math.PI * (1 - (moonPosition.y - 10) / 77)) : 0
   const moonSize = Math.round(46 - moonElevation * 8)
 
   return (
     <div className="absolute inset-0" style={{ zIndex: 0 }}>
-
       {/* Sky gradient */}
       <div
         className="absolute inset-0"
@@ -293,8 +313,15 @@ export function SkyLayer({ atmosphere }: SkyLayerProps) {
               width: star.size,
               height: star.size,
             }}
-            animate={{ opacity: [star.baseOpacity * 0.55, star.baseOpacity, star.baseOpacity * 0.55] }}
-            transition={{ repeat: Infinity, duration: star.twinkleDuration, ease: 'easeInOut', delay: star.twinkleDelay }}
+            animate={{
+              opacity: [star.baseOpacity * 0.55, star.baseOpacity, star.baseOpacity * 0.55],
+            }}
+            transition={{
+              repeat: Infinity,
+              duration: star.twinkleDuration,
+              ease: 'easeInOut',
+              delay: star.twinkleDelay,
+            }}
           />
         ))}
       </div>

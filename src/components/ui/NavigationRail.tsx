@@ -18,7 +18,11 @@ interface NavigationRailProps {
   isSettingsActive?: boolean
 }
 
-export function NavigationRail({ onStatsClick, onSettingsClick, isSettingsActive }: NavigationRailProps) {
+export function NavigationRail({
+  onStatsClick,
+  onSettingsClick,
+  isSettingsActive,
+}: NavigationRailProps) {
   const items: NavItem[] = [
     {
       id: 'stats',
@@ -59,12 +63,8 @@ export function NavigationRail({ onStatsClick, onSettingsClick, isSettingsActive
             "
             style={{
               background: isActive ? 'rgba(240,192,96,0.18)' : 'transparent',
-              border: isActive
-                ? '1px solid rgba(240,192,96,0.4)'
-                : '1px solid transparent',
-              color: isActive
-                ? 'var(--color-lantern-gold)'
-                : 'var(--color-text-on-dark)',
+              border: isActive ? '1px solid rgba(240,192,96,0.4)' : '1px solid transparent',
+              color: isActive ? 'var(--color-lantern-gold)' : 'var(--color-text-on-dark)',
               transition: 'background 250ms, border 250ms, color 250ms, transform 150ms',
             }}
           >

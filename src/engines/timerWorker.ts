@@ -12,9 +12,7 @@ type InMsg =
   | { type: 'RESUME' }
   | { type: 'STOP' }
 
-type OutMsg =
-  | { type: 'TICK'; timeRemaining: number }
-  | { type: 'COMPLETE' }
+type OutMsg = { type: 'TICK'; timeRemaining: number } | { type: 'COMPLETE' }
 
 let intervalId: ReturnType<typeof setInterval> | null = null
 let endTime: number | null = null

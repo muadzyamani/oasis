@@ -82,8 +82,8 @@ const SCENE_CONFIGS: Record<TimeOfDay, SceneConfig> = {
 // Generate star positions (seeded for consistency)
 const STARS = Array.from({ length: 60 }, (_, i) => ({
   id: i,
-  x: ((i * 137.5) % 100),
-  y: ((i * 97.3) % 60),
+  x: (i * 137.5) % 100,
+  y: (i * 97.3) % 60,
   size: i % 3 === 0 ? 2 : 1,
   opacity: 0.3 + (i % 5) * 0.14,
 }))

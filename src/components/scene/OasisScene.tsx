@@ -16,7 +16,13 @@ interface OasisSceneProps {
   previewProgress?: number
 }
 
-export function OasisScene({ atmosphere, oasis, newElementId, preview, previewProgress }: OasisSceneProps) {
+export function OasisScene({
+  atmosphere,
+  oasis,
+  newElementId,
+  preview,
+  previewProgress,
+}: OasisSceneProps) {
   const { timeOfDay, sessionActive, sessionProgress, isBreak } = atmosphere
 
   return (
@@ -38,10 +44,19 @@ export function OasisScene({ atmosphere, oasis, newElementId, preview, previewPr
       <VegetationLayer />
 
       {/* Layer 4: Flora elements */}
-      <FloraLayer elements={oasis.elements} newElementId={newElementId} preview={preview} previewProgress={previewProgress} />
+      <FloraLayer
+        elements={oasis.elements}
+        newElementId={newElementId}
+        preview={preview}
+        previewProgress={previewProgress}
+      />
 
       {/* Layer 5: Atmosphere (dust, focus glow, particles) */}
-      <AtmosphereLayer sessionActive={sessionActive} sessionProgress={sessionProgress} isBreak={isBreak} />
+      <AtmosphereLayer
+        sessionActive={sessionActive}
+        sessionProgress={sessionProgress}
+        isBreak={isBreak}
+      />
     </div>
   )
 }

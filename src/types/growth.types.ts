@@ -12,18 +12,18 @@ export interface AtmosphereState {
   timeOfDay: TimeOfDay
 
   // Continuous solar values
-  solarElevation: number            // -1 (nadir) → 0 (horizon) → 1 (zenith)
-  sunPosition: { x: number; y: number } | null  // null at night
+  solarElevation: number // -1 (nadir) → 0 (horizon) → 1 (zenith)
+  sunPosition: { x: number; y: number } | null // null at night
   moonPosition: { x: number; y: number } | null // null during day
-  starsOpacity: number              // 0–1 continuous
-  lunarPhase: number                // 0=new moon … 0.5=full … 1=new moon
+  starsOpacity: number // 0–1 continuous
+  lunarPhase: number // 0=new moon … 0.5=full … 1=new moon
 
   // Interpolated sky colours for this exact minute
   skyColors: SceneColors
 
   // Session context
   sessionActive: boolean
-  sessionProgress: number           // 0–1 through current session
+  sessionProgress: number // 0–1 through current session
   isBreak: boolean
 }
 
@@ -33,10 +33,10 @@ export interface AtmosphereState {
  */
 export function timeOfDayFromElevation(elevation: number, minuteOfDay: number): TimeOfDay {
   if (elevation > 0.15) {
-    if (minuteOfDay < 780) return 'morning'    // before solar noon
+    if (minuteOfDay < 780) return 'morning' // before solar noon
     return 'afternoon'
   }
-  if (elevation > 0)  return minuteOfDay < 780 ? 'dawn' : 'dusk'
+  if (elevation > 0) return minuteOfDay < 780 ? 'dawn' : 'dusk'
   if (minuteOfDay > 300 && minuteOfDay < 420) return 'dawn'
   if (minuteOfDay > 1080 && minuteOfDay < 1200) return 'dusk'
   return 'night'
