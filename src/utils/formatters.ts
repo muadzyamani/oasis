@@ -8,11 +8,14 @@ const ELEMENT_NAMES: Record<OasisElementType, string> = {
   sprout: 'Sprout',
   flower: 'Flower',
   reed: 'Reed',
-  palm: 'Palm',
+  palm: 'Date Palm',
   lantern: 'Lantern',
   lily: 'Lotus',
   waterfall: 'Falls',
   firefly: 'Firefly',
+  acacia: 'Acacia',
+  succulent: 'Succulent',
+  willow: 'Desert Willow',
 }
 
 const ORDINAL_DAYS = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']

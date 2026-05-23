@@ -55,7 +55,7 @@ export function useTimer(): UseTimerReturn {
           const event = resolveGrowthEvent(completed, oasis)
           const planted = useOasisStore
             .getState()
-            .addElement(event.elementType, completed.id, event.plantedAt)
+            .addElement(event.elementType, completed.id, event.plantedAt, event.position)
           useOasisStore.getState().addFocusMinutes(completed.durationMinutes)
           setPlantedElementId(planted.id)
           setPreviewElement(null) // preview becomes the real element

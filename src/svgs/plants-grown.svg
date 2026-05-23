@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f3e8"/>
+      <stop offset="100%" stop-color="#e8dcc4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="500" fill="url(#sky-grad)"/>
+  
+  <!-- Ground & Dunes -->
+  <path d="M 0 380 Q 400 395 800 380 L 800 500 L 0 500 Z" fill="#e3d5b8"/>
+  <path d="M 0 385 Q 400 400 800 385" fill="none" stroke="#c9b896" stroke-width="3" stroke-linecap="round"/>
+  <path d="M 0 395 Q 400 405 800 395" fill="none" stroke="#d9c8a8" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Ground Shadows -->
+  <g fill="#c2a87d" opacity="0.6">
+    <ellipse cx="100" cy="380" rx="45" ry="8"/>
+    <ellipse cx="300" cy="380" rx="55" ry="10"/>
+    <ellipse cx="500" cy="380" rx="50" ry="9"/>
+    <ellipse cx="700" cy="380" rx="60" ry="10"/>
+  </g>
+
+  <!-- 1. Mature Date Palm -->
+  <g transform="translate(100, 20)">
+    <!-- Trunk -->
+    <path d="M 8 350 Q 5 250 10 150 Q 12 100 10 60" fill="none" stroke="#5c4a3d" stroke-width="12" stroke-linecap="round"/>
+    <!-- Trunk Texture (Cross-hatched leaf scars) -->
+    <g stroke="#7a6452" stroke-width="1.5" opacity="0.7">
+      <path d="M 4 320 L 16 310"/><path d="M 16 320 L 4 310"/>
+      <path d="M 5 290 L 15 280"/><path d="M 15 290 L 5 280"/>
+      <path d="M 6 260 L 14 250"/><path d="M 14 260 L 6 250"/>
+      <path d="M 7 230 L 13 220"/><path d="M 13 230 L 7 220"/>
+      <path d="M 8 200 L 12 190"/><path d="M 12 200 L 8 190"/>
+      <path d="M 9 170 L 11 160"/><path d="M 11 170 L 9 160"/>
+      <path d="M 9 140 L 11 130"/><path d="M 11 140 L 9 130"/>
+      <path d="M 9 110 L 11 100"/><path d="M 11 110 L 9 100"/>
+    </g>
+    <!-- Crown -->
+    <g fill="#4a7c59">
+      <path d="M 10 60 Q -50 30 -90 50 Q -40 80 10 60"/>
+      <path d="M 10 60 Q 50 20 100 40 Q 50 70 10 60" fill="#5a9c69"/>
+      <path d="M 10 60 Q -30 -10 -60 -30 Q -10 20 10 60"/>
+      <path d="M 10 60 Q 30 -20 70 -40 Q 20 10 10 60" fill="#6aac79"/>
+      <path d="M 10 60 Q -10 -40 -20 -70 Q 0 10 10 60"/>
+      <path d="M 10 60 Q 10 -50 20 -80 Q 15 0 10 60" fill="#4a7c59"/>
+      <path d="M 10 60 Q -60 60 -80 90 Q -20 90 10 60" fill="#3a6c49"/>
+      <path d="M 10 60 Q 60 60 90 80 Q 20 90 10 60" fill="#4a7c59"/>
+    </g>
+    <!-- Frond Veins -->
+    <g stroke="#2a4c39" stroke-width="1.5" fill="none" opacity="0.6">
+      <path d="M 10 60 Q -40 45 -80 55"/>
+      <path d="M 10 60 Q 40 40 90 50"/>
+      <path d="M 10 60 Q -25 -5 -50 -20"/>
+      <path d="M 10 60 Q 25 -10 60 -30"/>
+      <path d="M 10 60 Q -5 -35 -15 -60"/>
+      <path d="M 10 60 Q 5 -45 15 -70"/>
+    </g>
+    <!-- Dates -->
+    <g fill="#8b4513">
+      <circle cx="-5" cy="75" r="3"/><circle cx="0" cy="80" r="3"/><circle cx="5" cy="78" r="3"/>
+      <circle cx="-3" cy="85" r="3"/><circle cx="2" cy="88" r="3"/><circle cx="7" cy="83" r="3"/>
+    </g>
+  </g>
+
+  <!-- 2. Mature Acacia -->
+  <g transform="translate(300, 20)">
+    <!-- Trunk & Main Branches -->
+    <path d="M 10 350 L 5 250 L -15 180" fill="none" stroke="#5a6a4a" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 5 250 L 20 190 L 35 160" fill="none" stroke="#5a6a4a" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 10 350 L 15 270 L 30 210" fill="none" stroke="#5a6a4a" stroke-width="6" stroke-linecap="round"/>
+    <!-- Canopy Layers (Flat Umbrella Shape) -->
+    <g>
+      <path d="M -40 160 Q 0 140 40 150 Q 60 160 50 170 Q 0 180 -40 170 Z" fill="#6a9c4a"/>
+      <path d="M -60 140 Q 0 120 60 130 Q 80 140 70 150 Q 0 160 -60 150 Z" fill="#7cb342"/>
+      <path d="M -50 120 Q 0 100 50 110 Q 70 120 60 130 Q 0 140 -50 130 Z" fill="#8bc34a"/>
+      <path d="M -30 100 Q 0 85 30 95 Q 40 105 30 115 Q 0 125 -30 115 Z" fill="#9acd32"/>
+      <path d="M -70 150 Q -30 160 0 155 Q 30 150 70 160 Q 80 170 50 175 Q 0 185 -50 175 Q -80 170 -70 150 Z" fill="#5a8c3a"/>
+    </g>
+    <!-- Thorns/Details -->
+    <g stroke="#4a6a3a" stroke-width="1.5" stroke-linecap="round">
+      <line x1="-15" y1="180" x2="-25" y2="175"/>
+      <line x1="20" y1="190" x2="30" y2="185"/>
+      <line x1="10" y1="220" x2="0" y2="215"/>
+      <line x1="-5" y1="200" x2="-12" y2="195"/>
+    </g>
+  </g>
+
+  <!-- 3. Mature Desert Succulent (Agave/Yucca) -->
+  <g transform="translate(500, 20)">
+    <!-- Outer Leaves -->
+    <g fill="#5a7c69">
+      <path d="M 10 320 Q -50 340 -70 300 Q -40 280 -10 290 Z"/>
+      <path d="M 10 320 Q 60 330 80 290 Q 50 270 15 290 Z"/>
+      <path d="M 10 320 Q -60 300 -50 250 Q -20 240 -5 270 Z"/>
+      <path d="M 10 320 Q 70 290 60 240 Q 30 230 5 270 Z"/>
+    </g>
+    <!-- Middle Leaves -->
+    <g fill="#6a8c79">
+      <path d="M 10 300 Q -30 310 -40 270 Q -10 250 5 270 Z"/>
+      <path d="M 10 300 Q 40 300 45 260 Q 20 240 5 270 Z"/>
+      <path d="M 10 300 Q -40 270 -30 220 Q -5 200 0 250 Z"/>
+      <path d="M 10 300 Q 40 260 35 210 Q 10 190 0 250 Z"/>
+      <path d="M 10 300 Q -10 260 -5 200 Q 5 190 10 240 Z"/>
+    </g>
+    <!-- Inner Leaves -->
+    <g fill="#7a9c89">
+      <path d="M 10 280 Q -15 290 -20 250 Q 0 230 5 250 Z"/>
+      <path d="M 10 280 Q 25 280 28 240 Q 10 220 5 250 Z"/>
+      <path d="M 10 280 Q -5 240 -2 200 Q 5 190 10 230 Z"/>
+      <path d="M 10 280 Q 15 230 18 190 Q 10 180 10 220 Z"/>
+    </g>
+    <!-- Flower Stalk -->
+    <path d="M 10 280 Q 12 200 10 120" fill="none" stroke="#8a6a5a" stroke-width="4" stroke-linecap="round"/>
+    <!-- Stalk Leaves -->
+    <g fill="#9a8a7a">
+      <path d="M 10 260 Q 15 250 12 240 Q 10 235 10 245 Z"/>
+      <path d="M 10 260 Q 5 250 8 240 Q 10 235 10 245 Z"/>
+      <path d="M 11 220 Q 16 210 13 200 Q 11 195 11 205 Z"/>
+      <path d="M 11 220 Q 6 210 9 200 Q 11 195 11 205 Z"/>
+    </g>
+    <!-- Flowers -->
+    <g fill="#e6a817">
+      <circle cx="10" cy="120" r="5"/><circle cx="5" cy="130" r="4"/><circle cx="15" cy="130" r="4"/>
+      <circle cx="8" cy="140" r="4"/><circle cx="12" cy="150" r="3"/><circle cx="3" cy="155" r="3"/>
+      <circle cx="17" cy="155" r="3"/><circle cx="7" cy="165" r="3"/><circle cx="13" cy="165" r="3"/>
+    </g>
+    <!-- Spines -->
+    <g stroke="#a0c0a0" stroke-width="1" stroke-linecap="round">
+      <line x1="-65" y1="305" x2="-75" y2="310"/>
+      <line x1="75" y1="295" x2="85" y2="300"/>
+      <line x1="-45" y1="255" x2="-55" y2="260"/>
+      <line x1="55" y1="245" x2="65" y2="250"/>
+      <line x1="-25" y1="215" x2="-35" y2="220"/>
+      <line x1="35" y1="205" x2="45" y2="210"/>
+    </g>
+  </g>
+  
+  <!-- 4. Mature Desert Willow / Tamarisk -->
+  <g transform="translate(700, 20)">
+    <!-- Main Trunks -->
+    <path d="M 10 350 Q 5 250 15 150" fill="none" stroke="#6a6a5a" stroke-width="6" stroke-linecap="round"/>
+    <path d="M 10 350 Q 25 280 40 180" fill="none" stroke="#6a6a5a" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 15 150 Q -10 100 -20 60" fill="none" stroke="#6a6a5a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 15 150 Q 35 120 50 80" fill="none" stroke="#6a6a5a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 40 180 Q 20 130 10 90" fill="none" stroke="#6a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M 40 180 Q 60 140 70 100" fill="none" stroke="#6a6a5a" stroke-width="2.5" stroke-linecap="round"/>
+
+    <!-- Weeping Foliage Clusters -->
+    <g fill="#8aaa8a">
+      <ellipse cx="-20" cy="65" rx="12" ry="20" transform="rotate(-15 -20 65)"/>
+      <ellipse cx="50" cy="85" rx="10" ry="18" transform="rotate(15 50 85)"/>
+      <ellipse cx="10" cy="95" rx="11" ry="22"/>
+      <ellipse cx="70" cy="105" rx="9" ry="16" transform="rotate(10 70 105)"/>
+      <ellipse cx="-10" cy="120" rx="10" ry="18" transform="rotate(-20 -10 120)"/>
+      <ellipse cx="30" cy="125" rx="12" ry="20" transform="rotate(20 30 125)"/>
+      <ellipse cx="-30" cy="100" rx="8" ry="15" transform="rotate(-25 -30 100)"/>
+      <ellipse cx="60" cy="140" rx="9" ry="16" transform="rotate(15 60 140)"/>
+      <ellipse cx="-15" cy="145" rx="10" ry="17" transform="rotate(-10 -15 145)"/>
+      <ellipse cx="45" cy="160" rx="11" ry="19" transform="rotate(25 45 160)"/>
+    </g>
+    <!-- Pink Flowers -->
+    <g fill="#e68a9f">
+      <circle cx="-25" cy="60" r="2"/><circle cx="-15" cy="75" r="2"/><circle cx="-20" cy="85" r="2"/>
+      <circle cx="45" cy="80" r="2"/><circle cx="55" cy="95" r="2"/><circle cx="50" cy="70" r="2"/>
+      <circle cx="5" cy="85" r="2.5"/><circle cx="15" cy="100" r="2"/><circle cx="0" cy="110" r="2"/>
+      <circle cx="70" cy="100" r="2"/><circle cx="65" cy="115" r="2"/>
+      <circle cx="-15" cy="115" r="2"/><circle cx="-25" cy="130" r="2"/>
+      <circle cx="25" cy="115" r="2"/><circle cx="35" cy="130" r="2.5"/>
+      <circle cx="55" cy="135" r="2"/><circle cx="65" cy="150" r="2"/>
+      <circle cx="-20" cy="140" r="2"/><circle cx="40" cy="155" r="2.5"/>
+    </g>
+  </g>
+  
+  <!-- Labels -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#5a4a3a" text-anchor="middle" letter-spacing="1">
+    <text x="100" y="470">DATE PALM</text>
+    <text x="300" y="470">ACACIA</text>
+    <text x="500" y="470">DESERT SUCCULENT</text>
+    <text x="700" y="470">DESERT WILLOW</text>
+  </g>
+</svg>

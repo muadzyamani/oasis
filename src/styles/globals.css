@@ -213,3 +213,18 @@ body::after {
     color var(--duration-slow) var(--ease-smooth),
     opacity var(--duration-slow) var(--ease-smooth);
 }
+
+/* Golden glow pulsing animation for the growing plant preview */
+@keyframes growing-plant-glow-pulse {
+  0%, 100% {
+    filter: saturate(0.6) drop-shadow(0 0 3px rgba(240, 192, 96, 0.4)) drop-shadow(0 0 10px rgba(240, 192, 96, 0.15));
+  }
+  50% {
+    filter: saturate(0.75) drop-shadow(0 0 7px rgba(240, 192, 96, 0.8)) drop-shadow(0 0 20px rgba(240, 192, 96, 0.35));
+  }
+}
+
+.growing-plant-glow {
+  animation: growing-plant-glow-pulse 3s infinite ease-in-out;
+}
+

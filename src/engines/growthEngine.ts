@@ -1,3 +1,4 @@
+import { GROWTH_TIERS } from '@/types/oasis.types'
 import type { OasisElementType, OasisState } from '@/types/oasis.types'
 import type { Session } from '@/types/session.types'
 
@@ -16,6 +17,34 @@ export interface GrowthEvent {
 
 // Smart placement zones per element type (x,y as % of scene)
 const ZONES: Record<OasisElementType, Array<{ x: number; y: number }>> = {
+  palm: [
+    { x: 22, y: 83 },
+    { x: 38, y: 81 },
+    { x: 55, y: 84 },
+    { x: 72, y: 82 },
+    { x: 84, y: 83 },
+  ],
+  acacia: [
+    { x: 18, y: 82 },
+    { x: 32, y: 83 },
+    { x: 48, y: 81 },
+    { x: 64, y: 84 },
+    { x: 78, y: 82 },
+  ],
+  succulent: [
+    { x: 25, y: 84 },
+    { x: 42, y: 82 },
+    { x: 58, y: 83 },
+    { x: 70, y: 81 },
+    { x: 82, y: 84 },
+  ],
+  willow: [
+    { x: 15, y: 81 },
+    { x: 30, y: 84 },
+    { x: 52, y: 82 },
+    { x: 67, y: 83 },
+    { x: 80, y: 81 },
+  ],
   sprout: [
     { x: 48, y: 83 },
     { x: 53, y: 82 },
@@ -35,16 +64,6 @@ const ZONES: Record<OasisElementType, Array<{ x: number; y: number }>> = {
     { x: 78, y: 74 },
     { x: 17, y: 76 },
     { x: 83, y: 75 },
-  ],
-  palm: [
-    { x: 28, y: 69 }, // Left shore
-    { x: 72, y: 69 }, // Right shore
-    { x: 20, y: 70 }, // Far left shore
-    { x: 80, y: 70 }, // Far right shore
-    { x: 35, y: 68 }, // Back left shoreline
-    { x: 65, y: 68 }, // Back right shoreline
-    { x: 14, y: 71 }, // Deep left shore
-    { x: 86, y: 71 }, // Deep right shore
   ],
   lantern: [
     { x: 50, y: 73 },
@@ -78,8 +97,26 @@ function computeTier(totalMinutes: number): number {
   return TIER_THRESHOLDS.reduce((acc, threshold, i) => (totalMinutes >= threshold ? i : acc), 0)
 }
 
-function pickElementType(_oasis: OasisState, _sessionIndex: number): OasisElementType {
-  return 'palm'
+function pickElementType(oasis: OasisState, sessionIndex: number): OasisElementType {
+  const currentTier = computeTier(oasis.totalFocusMinutes)
+  
+  // Collect all elements unlocked up to current tier
+  const unlocked: OasisElementType[] = []
+  for (let i = 0; i <= currentTier; i++) {
+    const tierConfig = GROWTH_TIERS.find((t) => t.tier === i)
+    if (tierConfig) {
+      unlocked.push(...tierConfig.unlockedElements)
+    }
+  }
+
+  // Filter to our 4 growing saplings
+  const allowed = unlocked.filter((t) => ['palm', 'acacia', 'succulent', 'willow'].includes(t))
+
+  if (allowed.length === 0) {
+    return 'palm' // fallback
+  }
+
+  return allowed[sessionIndex % allowed.length]
 }
 
 function pickPosition(type: OasisElementType, usedCount: number): { x: number; y: number } {

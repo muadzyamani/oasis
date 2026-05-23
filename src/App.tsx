@@ -4,6 +4,7 @@ import { OasisScene } from '@/components/scene/OasisScene'
 import { NavigationRail } from '@/components/ui/NavigationRail'
 import { TimerWidget } from '@/components/timer/TimerWidget'
 import { SettingsPanel } from '@/components/overlays/SettingsPanel'
+import { StatsPanel } from '@/components/overlays/StatsPanel'
 import { useAmbient } from '@/hooks/useAmbient'
 import { useOasisGrowth } from '@/hooks/useOasisGrowth'
 import { TimeDebugPanel } from '@/components/dev/TimeDebugPanel'
@@ -22,6 +23,7 @@ function App() {
   const [preview, setPreview] = useState<PreviewElement | null>(null)
   const [previewProgress, setPreviewProgress] = useState(0)
   const [settingsOpen, setSettingsOpen] = useState(false)
+  const [statsOpen, setStatsOpen] = useState(false)
 
   const handlePreviewChange = useCallback((el: PreviewElement | null, progress: number) => {
     setPreview(el)
@@ -41,23 +43,34 @@ function App() {
       {/* Layer 1 — Timer widget (expanded card or compact bar) */}
       <div
         className={`absolute inset-0 flex items-center justify-center pointer-events-none transition-all duration-300 ${
-          settingsOpen ? 'max-md:opacity-0 max-md:scale-95' : 'opacity-100 scale-100'
+          (settingsOpen || statsOpen) ? 'max-md:opacity-0 max-md:scale-95' : 'opacity-100 scale-100'
         }`}
         style={{ zIndex: 'var(--z-widget)' }}
       >
-        <div className={`pointer-events-auto ${settingsOpen ? 'max-md:pointer-events-none' : ''}`}>
+        <div className={`pointer-events-auto ${(settingsOpen || statsOpen) ? 'max-md:pointer-events-none' : ''}`}>
           <TimerWidget onPreviewChange={handlePreviewChange} />
         </div>
       </div>
 
       {/* Layer 2 — Navigation rail */}
       <NavigationRail
-        onSettingsClick={() => setSettingsOpen((v) => !v)}
+        onSettingsClick={() => {
+          setSettingsOpen((v) => !v)
+          setStatsOpen(false)
+        }}
         isSettingsActive={settingsOpen}
+        onStatsClick={() => {
+          setStatsOpen((v) => !v)
+          setSettingsOpen(false)
+        }}
+        isStatsActive={statsOpen}
       />
 
       {/* Layer 3 — Settings overlay */}
       <SettingsPanel open={settingsOpen} onClose={() => setSettingsOpen(false)} />
+
+      {/* Layer 3b — Statistics overlay */}
+      <StatsPanel open={statsOpen} onClose={() => setStatsOpen(false)} />
 
       {/* Layer 4 — Dev tools (stripped from production bundle) */}
       {import.meta.env.DEV && <TimeDebugPanel />}

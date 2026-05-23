@@ -16,12 +16,14 @@ interface NavigationRailProps {
   onStatsClick?: () => void
   onSettingsClick?: () => void
   isSettingsActive?: boolean
+  isStatsActive?: boolean
 }
 
 export function NavigationRail({
   onStatsClick,
   onSettingsClick,
   isSettingsActive,
+  isStatsActive,
 }: NavigationRailProps) {
   const items: NavItem[] = [
     {
@@ -45,7 +47,9 @@ export function NavigationRail({
       aria-label="Main navigation"
     >
       {items.map((item) => {
-        const isActive = item.id === 'settings' && isSettingsActive
+        const isActive =
+          (item.id === 'settings' && isSettingsActive) ||
+          (item.id === 'stats' && isStatsActive)
         return (
           <button
             key={item.id}

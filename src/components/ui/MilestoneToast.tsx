@@ -67,11 +67,14 @@ export function buildToastMessage(elementType: string, tierUp: boolean, tierName
     sprout: 'A new sprout has taken root.',
     flower: 'A flower opens in the silence.',
     reed: "Reeds grow at the water's edge.",
-    palm: 'A palm rises toward the sky.',
+    palm: 'A new Date Palm sapling has taken root.',
     lantern: 'A lantern lights itself.',
     lily: 'A lotus rests on the water.',
     firefly: 'Fireflies emerge at dusk.',
     waterfall: 'The sound of water fills your oasis.',
+    acacia: 'An Acacia sapling begins to grow.',
+    succulent: 'A Desert Succulent takes root.',
+    willow: 'A Desert Willow sapling starts to bud.',
   }
   return messages[elementType] ?? 'Your oasis grows.'
 }

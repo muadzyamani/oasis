@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" width="100%" height="100%">
+  <defs>
+    <linearGradient id="sky-grad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7f3e8"/>
+      <stop offset="100%" stop-color="#e8dcc4"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="420" fill="url(#sky-grad)"/>
+  
+  <!-- Ground & Sand Dunes -->
+  <path d="M 0 350 Q 400 365 800 350 L 800 420 L 0 420 Z" fill="#e3d5b8"/>
+  <path d="M 0 355 Q 400 370 800 355" fill="none" stroke="#c9b896" stroke-width="3" stroke-linecap="round"/>
+  
+  <!-- Decorative Sand & Pebble Accents -->
+  <g fill="#d4c5a5">
+    <circle cx="80" cy="365" r="2"/><circle cx="120" cy="370" r="3"/><circle cx="150" cy="360" r="2"/>
+    <circle cx="280" cy="365" r="2"/><circle cx="320" cy="375" r="3"/><circle cx="350" cy="362" r="2"/>
+    <circle cx="480" cy="368" r="2"/><circle cx="520" cy="372" r="3"/><circle cx="550" cy="365" r="2"/>
+    <circle cx="680" cy="365" r="2"/><circle cx="720" cy="370" r="3"/><circle cx="750" cy="362" r="2"/>
+  </g>
+
+  <!-- 1. Date Palm Sprout -->
+  <g transform="translate(100, 30)">
+    <ellipse cx="10" cy="265" rx="25" ry="4" fill="#c2a87d" opacity="0.6"/>
+    <path d="M 0 250 Q 5 200 0 150" fill="none" stroke="#6b5344" stroke-width="4" stroke-linecap="round"/>
+    <path d="M 0 150 Q -40 120 -50 90 Q -20 130 0 150" fill="#4a7c59"/>
+    <path d="M 0 150 Q 40 110 60 80 Q 20 130 0 150" fill="#5a9c69"/>
+    <path d="M 0 150 Q -15 100 -25 60 Q -5 120 0 150" fill="#3a6c49"/>
+    <path d="M 0 150 Q 25 100 15 50 Q 10 120 0 150" fill="#6aac79"/>
+    <path d="M 0 150 Q 0 100 -5 70 Q 5 120 0 150" fill="#4a7c59"/>
+    <ellipse cx="0" cy="260" rx="25" ry="6" fill="#c2a87d"/>
+  </g>
+
+  <!-- 2. Acacia Sprout -->
+  <g transform="translate(300, 30)">
+    <ellipse cx="10" cy="265" rx="20" ry="4" fill="#c2a87d" opacity="0.6"/>
+    <path d="M 0 250 L -10 210 L 15 170 L -5 130 L 10 90" fill="none" stroke="#5a6a4a" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <g fill="#7cb342">
+      <ellipse cx="-15" cy="225" rx="4" ry="12" transform="rotate(-30 -15 225)"/>
+      <ellipse cx="5" cy="225" rx="4" ry="12" transform="rotate(30 5 225)"/>
+      <ellipse cx="10" cy="185" rx="4" ry="12" transform="rotate(30 10 185)"/>
+      <ellipse cx="-10" cy="185" rx="4" ry="12" transform="rotate(-30 -10 185)"/>
+      <ellipse cx="0" cy="145" rx="4" ry="12" transform="rotate(-30 0 145)"/>
+      <ellipse cx="15" cy="145" rx="4" ry="12" transform="rotate(30 15 145)"/>
+      <ellipse cx="5" cy="105" rx="3" ry="10" transform="rotate(30 5 105)"/>
+      <ellipse cx="-5" cy="105" rx="3" ry="10" transform="rotate(-30 -5 105)"/>
+    </g>
+    <ellipse cx="0" cy="260" rx="20" ry="5" fill="#c2a87d"/>
+  </g>
+
+  <!-- 3. Desert Succulent Sprout -->
+  <g transform="translate(500, 30)">
+    <ellipse cx="10" cy="270" rx="28" ry="4" fill="#c2a87d" opacity="0.6"/>
+    <ellipse cx="0" cy="245" rx="18" ry="22" fill="#4e7a54"/>
+    <ellipse cx="-12" cy="235" rx="14" ry="20" fill="#5e8a64" transform="rotate(-35 -12 235)"/>
+    <ellipse cx="12" cy="235" rx="14" ry="20" fill="#5e8a64" transform="rotate(35 12 235)"/>
+    <ellipse cx="-22" cy="220" rx="11" ry="16" fill="#6e9a74" transform="rotate(-60 -22 220)"/>
+    <ellipse cx="22" cy="220" rx="11" ry="16" fill="#6e9a74" transform="rotate(60 22 220)"/>
+    <ellipse cx="-25" cy="200" rx="9" ry="13" fill="#7eaa84" transform="rotate(-80 -25 200)"/>
+    <ellipse cx="25" cy="200" rx="9" ry="13" fill="#7eaa84" transform="rotate(80 25 200)"/>
+    <ellipse cx="-12" cy="185" rx="8" ry="11" fill="#8eba94" transform="rotate(-25 -12 185)"/>
+    <ellipse cx="12" cy="185" rx="8" ry="11" fill="#8eba94" transform="rotate(25 12 185)"/>
+    <ellipse cx="0" cy="260" rx="28" ry="6" fill="#c2a87d"/>
+  </g>
+  
+  <!-- 4. Desert Willow / Tamarisk Sprout -->
+  <g transform="translate(700, 30)">
+    <ellipse cx="10" cy="265" rx="22" ry="4" fill="#c2a87d" opacity="0.6"/>
+    <path d="M 0 250 Q -5 200 5 150 Q 15 100 10 60" fill="none" stroke="#6a6a5a" stroke-width="3" stroke-linecap="round"/>
+    <path d="M 5 150 Q 30 140 40 110" fill="none" stroke="#6a6a5a" stroke-width="1.5"/>
+    <path d="M 10 120 Q -15 110 -25 80" fill="none" stroke="#6a6a5a" stroke-width="1.5"/>
+    <path d="M 12 80 Q -5 60 -15 30" fill="none" stroke="#6a6a5a" stroke-width="1.5"/>
+    
+    <g fill="#7a9c7a">
+      <circle cx="25" cy="140" r="8"/>
+      <circle cx="35" cy="125" r="7"/>
+      <circle cx="15" cy="130" r="6"/>
+      <circle cx="-10" cy="105" r="8"/>
+      <circle cx="-20" cy="90" r="7"/>
+      <circle cx="0" cy="95" r="6"/>
+      <circle cx="5" cy="75" r="7"/>
+      <circle cx="-10" cy="55" r="6"/>
+      <circle cx="15" cy="60" r="5"/>
+      <circle cx="10" cy="60" r="8"/>
+      <circle cx="0" cy="45" r="6"/>
+    </g>
+    <ellipse cx="0" cy="260" rx="22" ry="5" fill="#c2a87d"/>
+  </g>
+  
+  <!-- Labels -->
+  <g font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#5a4a3a" text-anchor="middle" letter-spacing="1">
+    <text x="100" y="395">DATE PALM</text>
+    <text x="300" y="395">ACACIA</text>
+    <text x="500" y="395">SUCCULENT</text>
+    <text x="700" y="395">DESERT WILLOW</text>
+  </g>
+</svg>

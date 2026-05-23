@@ -19,7 +19,7 @@ interface OasisStoreState {
 
   // Actions
   setName: (name: string) => void
-  addElement: (type: OasisElementType, sessionId: string, plantedAt: number) => OasisElement
+  addElement: (type: OasisElementType, sessionId: string, plantedAt: number, position?: { x: number; y: number }) => OasisElement
   addFocusMinutes: (minutes: number) => void
   clearElements: () => void
   reset: () => void
@@ -70,10 +70,10 @@ export const useOasisStore = create<OasisStoreState>()(
 
       setName: (name) => set((state) => ({ oasis: { ...state.oasis, name } })),
 
-      addElement: (type, sessionId, plantedAt) => {
+      addElement: (type, sessionId, plantedAt, position) => {
         const { oasis } = get()
         const index = oasis.elements.length % SCENE_POSITIONS.length
-        const position = SCENE_POSITIONS[index]
+        const finalPosition = position ?? SCENE_POSITIONS[index]
 
         const element: OasisElement = {
           id: generateElementId(),
@@ -81,7 +81,7 @@ export const useOasisStore = create<OasisStoreState>()(
           plantedAt,
           sessionId,
           label: format.elementLabel(type, plantedAt),
-          position,
+          position: finalPosition,
           tier: oasis.tier,
         }
 

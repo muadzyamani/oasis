@@ -13,6 +13,9 @@ export type OasisElementType =
   | 'lily'
   | 'waterfall'
   | 'firefly'
+  | 'acacia'
+  | 'succulent'
+  | 'willow'
 
 export interface OasisElement {
   id: string
@@ -51,7 +54,7 @@ export const GROWTH_TIERS: GrowthTierConfig[] = [
     label: 'Your oasis awaits',
     minMinutes: 0,
     description: 'A bare sandy clearing, full of potential.',
-    unlockedElements: ['sprout'],
+    unlockedElements: ['palm'],
   },
   {
     tier: 1,
@@ -59,7 +62,7 @@ export const GROWTH_TIERS: GrowthTierConfig[] = [
     label: 'Life begins',
     minMinutes: 25,
     description: 'Your first plant takes root. A pool shimmers in the distance.',
-    unlockedElements: ['flower', 'reed'],
+    unlockedElements: ['acacia'],
   },
   {
     tier: 2,
@@ -67,7 +70,7 @@ export const GROWTH_TIERS: GrowthTierConfig[] = [
     label: 'The oasis awakens',
     minMinutes: 120,
     description: 'Flowers open, the pool fills, and the first lantern flickers.',
-    unlockedElements: ['lily', 'lantern'],
+    unlockedElements: ['succulent'],
   },
   {
     tier: 3,
@@ -75,7 +78,7 @@ export const GROWTH_TIERS: GrowthTierConfig[] = [
     label: 'A quiet refuge',
     minMinutes: 480,
     description: 'Palms cast soft shadows. Fireflies appear at dusk.',
-    unlockedElements: ['palm', 'firefly'],
+    unlockedElements: ['willow'],
   },
   {
     tier: 4,
@@ -83,7 +86,7 @@ export const GROWTH_TIERS: GrowthTierConfig[] = [
     label: 'Your own sanctuary',
     minMinutes: 1440,
     description: 'A full canopy, lotus flowers, and the sound of water.',
-    unlockedElements: ['waterfall'],
+    unlockedElements: [],
   },
   {
     tier: 5,

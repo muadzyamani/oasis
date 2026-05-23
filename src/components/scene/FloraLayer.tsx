@@ -4,10 +4,13 @@ import type { PreviewElement } from '@/hooks/useTimer'
 import { Sprout } from './elements/Sprout'
 import { Flower } from './elements/Flower'
 import { Reed } from './elements/Reed'
-import { Palm } from './elements/Palm'
 import { Lantern } from './elements/Lantern'
 import { Lily } from './elements/Lily'
 import { Firefly } from './elements/Firefly'
+import { DatePalm } from './elements/DatePalm'
+import { Acacia } from './elements/Acacia'
+import { Succulent } from './elements/Succulent'
+import { DesertWillow } from './elements/DesertWillow'
 
 interface FloraLayerProps {
   elements: OasisElement[]
@@ -18,14 +21,20 @@ interface FloraLayerProps {
 
 function ElementComponent({ type, seed }: { type: OasisElement['type']; seed: number }) {
   switch (type) {
+    case 'palm':
+      return <DatePalm />
+    case 'acacia':
+      return <Acacia />
+    case 'succulent':
+      return <Succulent />
+    case 'willow':
+      return <DesertWillow />
     case 'sprout':
       return <Sprout />
     case 'flower':
       return <Flower />
     case 'reed':
       return <Reed />
-    case 'palm':
-      return <Palm seed={seed} />
     case 'lantern':
       return <Lantern />
     case 'lily':
@@ -33,7 +42,7 @@ function ElementComponent({ type, seed }: { type: OasisElement['type']; seed: nu
     case 'firefly':
       return <Firefly seed={seed} />
     default:
-      return <Sprout />
+      return <DatePalm />
   }
 }
 
@@ -83,20 +92,20 @@ export function FloraLayer({
         {preview && (
           <motion.div
             key="preview"
+            className="growing-plant-glow"
             style={{
               position: 'absolute',
               left: `${preview.position.x}%`,
               top: `${preview.position.y}%`,
               transform: 'translate(-50%, -100%)',
-              filter: 'saturate(0.6)',
             }}
             initial={{ scale: 0, opacity: 0, y: 16 }}
             animate={{ scale: previewScale, opacity: previewOpacity, y: 0 }}
             exit={{ scale: 0, opacity: 0, y: 8, transition: { duration: 0.4 } }}
             transition={{ type: 'spring', stiffness: 70, damping: 14, duration: 0.8 }}
           >
-            {/* Always show the sprout sapling as the focus preview */}
-            <ElementComponent type="sprout" seed={99} />
+            {/* Render the specific sapling that is growing in this session */}
+            <ElementComponent type={preview.type} seed={99} />
           </motion.div>
         )}
       </AnimatePresence>
