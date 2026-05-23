@@ -39,18 +39,18 @@ const computeNextTierMinutes = (currentTier: GrowthTier): number | null => {
 }
 
 const SCENE_POSITIONS: Array<{ x: number; y: number }> = [
-  { x: 50, y: 70 },
-  { x: 35, y: 65 },
-  { x: 65, y: 68 },
-  { x: 25, y: 72 },
-  { x: 75, y: 63 },
-  { x: 45, y: 75 },
-  { x: 55, y: 60 },
-  { x: 30, y: 58 },
-  { x: 70, y: 72 },
-  { x: 20, y: 66 },
-  { x: 80, y: 65 },
-  { x: 40, y: 62 },
+  { x: 50, y: 80 },
+  { x: 35, y: 81 },
+  { x: 65, y: 80 },
+  { x: 25, y: 82 },
+  { x: 75, y: 79 },
+  { x: 45, y: 81 },
+  { x: 55, y: 80 },
+  { x: 30, y: 79 },
+  { x: 70, y: 81 },
+  { x: 20, y: 80 },
+  { x: 80, y: 79 },
+  { x: 40, y: 80 },
 ]
 
 const initialOasis: OasisState = {
