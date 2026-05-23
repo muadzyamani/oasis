@@ -14,22 +14,21 @@ export interface GrowthEvent {
   newTier: number
 }
 
-// Which elements become available at each tier
-const ELEMENTS_BY_TIER: Record<number, OasisElementType[]> = {
-  0: ['sprout'],
-  1: ['flower', 'reed'],
-  2: ['lily', 'lantern'],
-  3: ['palm', 'firefly'],
-  4: ['palm', 'lily'],
-  5: ['palm', 'firefly', 'lily'],
-}
-
 // Smart placement zones per element type (x,y as % of scene)
 const ZONES: Record<OasisElementType, Array<{ x: number; y: number }>> = {
   sprout:    [{ x: 48, y: 75 }, { x: 53, y: 74 }, { x: 43, y: 76 }, { x: 57, y: 75 }],
   flower:    [{ x: 32, y: 73 }, { x: 66, y: 72 }, { x: 42, y: 75 }, { x: 58, y: 74 }, { x: 27, y: 73 }, { x: 72, y: 72 }],
   reed:      [{ x: 22, y: 67 }, { x: 78, y: 66 }, { x: 17, y: 68 }, { x: 83, y: 67 }],
-  palm:      [{ x: 10, y: 63 }, { x: 90, y: 62 }, { x: 6, y: 65 }, { x: 94, y: 64 }, { x: 18, y: 61 }, { x: 82, y: 60 }],
+  palm: [
+    { x: 28, y: 61 }, // Left shore
+    { x: 72, y: 61 }, // Right shore
+    { x: 20, y: 62 }, // Far left shore
+    { x: 80, y: 62 }, // Far right shore
+    { x: 35, y: 60 }, // Back left shoreline
+    { x: 65, y: 60 }, // Back right shoreline
+    { x: 14, y: 63 }, // Deep left shore
+    { x: 86, y: 63 }  // Deep right shore
+  ],
   lantern:   [{ x: 50, y: 65 }, { x: 36, y: 64 }, { x: 64, y: 66 }, { x: 50, y: 62 }],
   lily:      [{ x: 40, y: 64 }, { x: 55, y: 63 }, { x: 47, y: 65 }, { x: 52, y: 62 }],
   waterfall: [{ x: 12, y: 58 }, { x: 88, y: 57 }],
@@ -42,11 +41,8 @@ function computeTier(totalMinutes: number): number {
   return TIER_THRESHOLDS.reduce((acc, threshold, i) => (totalMinutes >= threshold ? i : acc), 0)
 }
 
-function pickElementType(oasis: OasisState, sessionIndex: number): OasisElementType {
-  // Every 7th session plants a lantern (if tier >= 2)
-  if (sessionIndex > 0 && sessionIndex % 7 === 6 && oasis.tier >= 2) return 'lantern'
-  const available = ELEMENTS_BY_TIER[oasis.tier] ?? ['sprout']
-  return available[sessionIndex % available.length]
+function pickElementType(_oasis: OasisState, _sessionIndex: number): OasisElementType {
+  return 'palm'
 }
 
 function pickPosition(type: OasisElementType, usedCount: number): { x: number; y: number } {

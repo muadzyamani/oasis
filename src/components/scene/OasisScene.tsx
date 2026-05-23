@@ -4,6 +4,7 @@ import type { PreviewElement } from '@/hooks/useTimer'
 import { SkyLayer } from './SkyLayer'
 import { WaterLayer } from './WaterLayer'
 import { GroundLayer } from './GroundLayer'
+import { VegetationLayer } from './VegetationLayer'
 import { FloraLayer } from './FloraLayer'
 import { AtmosphereLayer } from './AtmosphereLayer'
 
@@ -32,6 +33,9 @@ export function OasisScene({ atmosphere, oasis, newElementId, preview, previewPr
 
       {/* Layer 3: Water pool */}
       <WaterLayer timeOfDay={timeOfDay} sessionActive={sessionActive} tier={oasis.tier} />
+
+      {/* Layer 3b: Baseline decorative vegetation (grass, bushes, rocks, reeds, lilies) */}
+      <VegetationLayer />
 
       {/* Layer 4: Flora elements */}
       <FloraLayer elements={oasis.elements} newElementId={newElementId} preview={preview} previewProgress={previewProgress} />

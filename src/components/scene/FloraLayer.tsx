@@ -21,7 +21,7 @@ function ElementComponent({ type, seed }: { type: OasisElement['type']; seed: nu
     case 'sprout':    return <Sprout />
     case 'flower':    return <Flower />
     case 'reed':      return <Reed />
-    case 'palm':      return <Palm />
+    case 'palm':      return <Palm seed={seed} />
     case 'lantern':   return <Lantern />
     case 'lily':      return <Lily />
     case 'firefly':   return <Firefly seed={seed} />
@@ -82,7 +82,8 @@ export function FloraLayer({ elements, newElementId, preview, previewProgress = 
             exit={{ scale: 0, opacity: 0, y: 8, transition: { duration: 0.4 } }}
             transition={{ type: 'spring', stiffness: 70, damping: 14, duration: 0.8 }}
           >
-            <ElementComponent type={preview.type} seed={99} />
+            {/* Always show the sprout sapling as the focus preview */}
+            <ElementComponent type="sprout" seed={99} />
           </motion.div>
         )}
       </AnimatePresence>
