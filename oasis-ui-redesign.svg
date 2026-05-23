@@ -1,0 +1,672 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFD89B"/>
+      <stop offset="60%" stop-color="#87CEEB"/>
+      <stop offset="100%" stop-color="#B3E5FC"/>
+    </linearGradient>
+    <linearGradient id="trunkGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4E2F1E"/>
+      <stop offset="45%" stop-color="#8B5A2B"/>
+      <stop offset="100%" stop-color="#3E2410"/>
+    </linearGradient>
+    <linearGradient id="youngTrunkGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#6B8E23"/>
+      <stop offset="50%" stop-color="#8FBC8F"/>
+      <stop offset="100%" stop-color="#556B2F"/>
+    </linearGradient>
+    <linearGradient id="frondGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#4CAF50"/>
+      <stop offset="50%" stop-color="#2E7D32"/>
+      <stop offset="100%" stop-color="#1B5E20"/>
+    </linearGradient>
+    <linearGradient id="frondGrad2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#66BB6A"/>
+      <stop offset="100%" stop-color="#2E7D32"/>
+    </linearGradient>
+    <radialGradient id="waterGrad" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#81D4FA"/>
+      <stop offset="60%" stop-color="#29B6F6"/>
+      <stop offset="100%" stop-color="#0277BD"/>
+    </radialGradient>
+    <radialGradient id="dateGrad" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#D2691E"/>
+      <stop offset="100%" stop-color="#5C2E0A"/>
+    </radialGradient>
+    <radialGradient id="dateGradGreen" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#A8D060"/>
+      <stop offset="100%" stop-color="#558B2F"/>
+    </radialGradient>
+    <radialGradient id="sandGrad" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#F5DEB3"/>
+      <stop offset="100%" stop-color="#C9A57B"/>
+    </radialGradient>
+    <radialGradient id="sunGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFF9C4"/>
+      <stop offset="60%" stop-color="#FFD54F"/>
+      <stop offset="100%" stop-color="#FFB300" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="3"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.4"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Sky -->
+  <rect width="900" height="700" fill="url(#skyGrad)"/>
+
+  <!-- Sun glow -->
+  <circle cx="750" cy="100" r="80" fill="url(#sunGrad)"/>
+  <circle cx="750" cy="100" r="40" fill="#FFF59D" opacity="0.9"/>
+
+  <!-- Distant dunes -->
+  <ellipse cx="200" cy="580" rx="280" ry="45" fill="#E8C99A" opacity="0.7"/>
+  <ellipse cx="650" cy="575" rx="240" ry="40" fill="#DEB887" opacity="0.7"/>
+  <ellipse cx="450" cy="585" rx="200" ry="35" fill="#D2B48C" opacity="0.6"/>
+
+  <!-- Main sand ground -->
+  <ellipse cx="450" cy="660" rx="550" ry="100" fill="url(#sandGrad)"/>
+  <path d="M0,620 Q225,580 450,605 Q675,580 900,620 L900,700 L0,700 Z" fill="#DEB887"/>
+  <path d="M0,640 Q225,615 450,630 Q675,615 900,640 L900,700 L0,700 Z" fill="#C9A57B" opacity="0.6"/>
+
+  <!-- Oasis water (larger to accommodate multiple trees) -->
+  <ellipse cx="450" cy="615" rx="220" ry="45" fill="url(#waterGrad)" opacity="0.9"/>
+  <ellipse cx="450" cy="610" rx="180" ry="30" fill="#4FC3F7" opacity="0.5"/>
+  <!-- Water highlights -->
+  <ellipse cx="400" cy="607" rx="40" ry="4" fill="#E1F5FE" opacity="0.7"/>
+  <ellipse cx="520" cy="615" rx="30" ry="3" fill="#E1F5FE" opacity="0.6"/>
+  <ellipse cx="450" cy="623" rx="25" ry="3" fill="#B3E5FC" opacity="0.6"/>
+  <ellipse cx="350" cy="618" rx="20" ry="2.5" fill="#E1F5FE" opacity="0.5"/>
+
+  <!-- ==================== MATURE PALM (CENTER-LEFT) ==================== -->
+  <g filter="url(#softShadow)">
+    <!-- Main curved trunk -->
+    <path d="M380,620 Q365,520 373,430 Q380,360 390,290 Q397,240 393,200"
+          stroke="url(#trunkGrad)" stroke-width="26" fill="none" stroke-linecap="round"/>
+    <path d="M373,605 Q363,510 371,420 Q377,350 385,285 Q391,235 389,200"
+          stroke="#3E2410" stroke-width="4" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Trunk texture rings -->
+  <g stroke="#3E2410" stroke-width="1.5" fill="none" opacity="0.85">
+    <path d="M368,600 Q383,593 398,600"/>
+    <path d="M368,580 Q383,573 398,580"/>
+    <path d="M369,560 Q383,553 397,560"/>
+    <path d="M369,540 Q383,533 397,540"/>
+    <path d="M370,520 Q383,513 396,520"/>
+    <path d="M370,500 Q383,493 396,500"/>
+    <path d="M371,480 Q384,473 397,480"/>
+    <path d="M372,460 Q384,453 397,460"/>
+    <path d="M373,440 Q385,433 397,440"/>
+    <path d="M374,420 Q386,413 398,420"/>
+    <path d="M375,400 Q387,393 399,400"/>
+    <path d="M376,380 Q388,373 400,380"/>
+    <path d="M378,360 Q389,353 401,360"/>
+    <path d="M379,340 Q390,333 402,340"/>
+    <path d="M381,320 Q391,313 403,320"/>
+    <path d="M382,300 Q392,293 404,300"/>
+    <path d="M383,280 Q393,273 405,280"/>
+    <path d="M384,260 Q394,253 406,260"/>
+    <path d="M385,240 Q394,233 406,240"/>
+    <path d="M386,220 Q395,213 406,220"/>
+  </g>
+
+  <!-- Crown base -->
+  <ellipse cx="393" cy="195" rx="18" ry="12" fill="#4E7A2E"/>
+  <ellipse cx="393" cy="190" rx="12" ry="8" fill="#6B9B3A"/>
+
+  <!-- MATURE PALM FRONDS -->
+  <!-- Frond 1: Right Upward -->
+  <g>
+    <path d="M393,195 Q455,140 535,100" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q465,130 535,100 Q485,150 393,195" fill="url(#frondGrad)" opacity="0.95"/>
+    <g stroke="#2E7D32" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M415,178 L440,155"/>
+      <path d="M430,168 L457,143"/>
+      <path d="M445,158 L475,133"/>
+      <path d="M460,148 L492,125"/>
+      <path d="M475,140 L508,118"/>
+      <path d="M490,132 L523,112"/>
+      <path d="M505,124 L533,108"/>
+      <path d="M415,182 L433,195"/>
+      <path d="M430,173 L450,185"/>
+      <path d="M445,165 L467,175"/>
+      <path d="M460,157 L483,165"/>
+      <path d="M475,149 L500,157"/>
+      <path d="M490,142 L515,148"/>
+    </g>
+  </g>
+
+  <!-- Frond 2: Right Horizontal -->
+  <g>
+    <path d="M393,195 Q480,175 570,170" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q485,160 570,170 Q485,188 393,195" fill="url(#frondGrad2)" opacity="0.92"/>
+    <g stroke="#388E3C" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M425,188 L445,165"/>
+      <path d="M450,182 L473,158"/>
+      <path d="M475,178 L500,153"/>
+      <path d="M500,174 L525,150"/>
+      <path d="M525,171 L547,152"/>
+      <path d="M425,194 L440,212"/>
+      <path d="M450,192 L467,208"/>
+      <path d="M475,190 L495,205"/>
+      <path d="M500,187 L520,200"/>
+      <path d="M525,184 L543,196"/>
+    </g>
+  </g>
+
+  <!-- Frond 3: Right Drooping -->
+  <g>
+    <path d="M393,198 Q480,235 545,320" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,198 Q490,215 545,320 Q475,248 393,198" fill="url(#frondGrad)" opacity="0.88"/>
+    <g stroke="#2E7D32" stroke-width="1.3" fill="none" opacity="0.85">
+      <path d="M425,212 L440,195"/>
+      <path d="M450,225 L467,208"/>
+      <path d="M475,240 L493,222"/>
+      <path d="M495,258 L515,240"/>
+      <path d="M513,278 L533,260"/>
+      <path d="M425,218 L435,240"/>
+      <path d="M450,233 L462,258"/>
+      <path d="M475,252 L487,278"/>
+      <path d="M495,272 L508,298"/>
+      <path d="M513,293 L525,318"/>
+    </g>
+  </g>
+
+  <!-- Frond 4: Left Upward -->
+  <g>
+    <path d="M393,195 Q315,140 235,100" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q305,130 235,100 Q320,150 393,195" fill="url(#frondGrad)" opacity="0.95"/>
+    <g stroke="#2E7D32" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M370,178 L345,155"/>
+      <path d="M355,168 L327,143"/>
+      <path d="M340,158 L310,133"/>
+      <path d="M325,148 L293,125"/>
+      <path d="M310,140 L277,118"/>
+      <path d="M295,132 L262,112"/>
+      <path d="M280,124 L252,108"/>
+      <path d="M370,182 L352,195"/>
+      <path d="M355,173 L335,185"/>
+      <path d="M340,165 L318,175"/>
+      <path d="M325,157 L302,165"/>
+      <path d="M310,149 L285,157"/>
+      <path d="M295,142 L270,148"/>
+    </g>
+  </g>
+
+  <!-- Frond 5: Left Horizontal -->
+  <g>
+    <path d="M393,195 Q300,175 210,170" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q295,160 210,170 Q300,188 393,195" fill="url(#frondGrad2)" opacity="0.92"/>
+    <g stroke="#388E3C" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M360,188 L340,165"/>
+      <path d="M335,182 L312,158"/>
+      <path d="M310,178 L285,153"/>
+      <path d="M285,174 L260,150"/>
+      <path d="M260,171 L238,152"/>
+      <path d="M360,194 L345,212"/>
+      <path d="M335,192 L318,208"/>
+      <path d="M310,190 L290,205"/>
+      <path d="M285,187 L265,200"/>
+      <path d="M260,184 L242,196"/>
+    </g>
+  </g>
+
+  <!-- Frond 6: Left Drooping -->
+  <g>
+    <path d="M393,198 Q300,235 235,320" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,198 Q290,215 235,320 Q305,248 393,198" fill="url(#frondGrad)" opacity="0.88"/>
+    <g stroke="#2E7D32" stroke-width="1.3" fill="none" opacity="0.85">
+      <path d="M360,212 L345,195"/>
+      <path d="M335,225 L318,208"/>
+      <path d="M310,240 L292,222"/>
+      <path d="M290,258 L270,240"/>
+      <path d="M272,278 L252,260"/>
+      <path d="M360,218 L350,240"/>
+      <path d="M335,233 L323,258"/>
+      <path d="M310,252 L298,278"/>
+      <path d="M290,272 L277,298"/>
+      <path d="M272,293 L260,318"/>
+    </g>
+  </g>
+
+  <!-- Frond 7: Top Center -->
+  <g>
+    <path d="M393,195 Q390,120 385,50" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q375,115 385,50 Q407,120 393,195" fill="#43A047" opacity="0.95"/>
+    <g stroke="#2E7D32" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M387,170 L365,155"/>
+      <path d="M385,150 L363,132"/>
+      <path d="M384,130 L363,110"/>
+      <path d="M384,110 L365,90"/>
+      <path d="M385,90 L368,70"/>
+      <path d="M386,70 L373,55"/>
+      <path d="M399,170 L420,155"/>
+      <path d="M401,150 L422,132"/>
+      <path d="M402,130 L422,110"/>
+      <path d="M402,110 L420,90"/>
+      <path d="M401,90 L417,70"/>
+      <path d="M400,70 L412,55"/>
+    </g>
+  </g>
+
+  <!-- Frond 8: Top Right -->
+  <g>
+    <path d="M393,195 Q435,120 475,50" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q445,110 475,50 Q425,125 393,195" fill="url(#frondGrad2)" opacity="0.9"/>
+    <g stroke="#388E3C" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M405,170 L390,148"/>
+      <path d="M415,150 L403,125"/>
+      <path d="M425,130 L415,105"/>
+      <path d="M435,112 L427,85"/>
+      <path d="M445,95 L440,70"/>
+      <path d="M410,175 L433,165"/>
+      <path d="M423,155 L447,142"/>
+      <path d="M433,138 L458,122"/>
+      <path d="M443,120 L467,102"/>
+      <path d="M453,100 L473,82"/>
+    </g>
+  </g>
+
+  <!-- Frond 9: Top Left -->
+  <g>
+    <path d="M393,195 Q345,120 305,50" stroke="#1B5E20" stroke-width="3.5" fill="none"/>
+    <path d="M393,195 Q335,110 305,50 Q355,125 393,195" fill="url(#frondGrad2)" opacity="0.9"/>
+    <g stroke="#388E3C" stroke-width="1.3" fill="none" opacity="0.9">
+      <path d="M380,170 L395,148"/>
+      <path d="M370,150 L382,125"/>
+      <path d="M360,130 L370,105"/>
+      <path d="M350,112 L358,85"/>
+      <path d="M340,95 L345,70"/>
+      <path d="M375,175 L352,165"/>
+      <path d="M362,155 L338,142"/>
+      <path d="M352,138 L327,122"/>
+      <path d="M342,120 L318,102"/>
+      <path d="M332,100 L312,82"/>
+    </g>
+  </g>
+
+  <!-- Back fronds -->
+  <g opacity="0.75">
+    <path d="M393,192 Q445,155 495,135" stroke="#1B5E20" stroke-width="2.5" fill="none"/>
+    <path d="M393,192 Q450,145 495,135 Q450,165 393,192" fill="#2E7D32"/>
+    <path d="M393,192 Q335,155 285,135" stroke="#1B5E20" stroke-width="2.5" fill="none"/>
+    <path d="M393,192 Q330,145 285,135 Q335,165 393,192" fill="#2E7D32"/>
+  </g>
+
+  <!-- DATE CLUSTERS for mature palm -->
+  <g>
+    <path d="M397,200 Q410,220 415,245" stroke="#5C3317" stroke-width="2" fill="none"/>
+    <path d="M397,200 Q405,225 407,250" stroke="#5C3317" stroke-width="2" fill="none"/>
+    <path d="M415,245 L420,260" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <path d="M415,245 L410,262" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <path d="M407,250 L405,268" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <ellipse cx="420" cy="265" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="410" cy="268" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="405" cy="274" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="419" cy="263" rx="1.2" ry="2" fill="#F4A460" opacity="0.6"/>
+    <ellipse cx="409" cy="266" rx="1.2" ry="2" fill="#F4A460" opacity="0.6"/>
+  </g>
+  <g>
+    <path d="M389,200 Q375,222 370,248" stroke="#5C3317" stroke-width="2" fill="none"/>
+    <path d="M389,200 Q380,225 378,252" stroke="#5C3317" stroke-width="2" fill="none"/>
+    <path d="M370,248 L365,265" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <path d="M370,248 L375,266" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <path d="M378,252 L377,270" stroke="#5C3317" stroke-width="1.2" fill="none"/>
+    <ellipse cx="365" cy="270" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="375" cy="272" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="377" cy="276" rx="4" ry="6" fill="url(#dateGrad)"/>
+    <ellipse cx="364" cy="268" rx="1.2" ry="2" fill="#F4A460" opacity="0.6"/>
+    <ellipse cx="374" cy="270" rx="1.2" ry="2" fill="#F4A460" opacity="0.6"/>
+  </g>
+
+  <!-- ==================== WIND-SWEPT PALM (RIGHT) ==================== -->
+  <g filter="url(#softShadow)">
+    <!-- Heavily curved trunk leaning right -->
+    <path d="M650,625 Q680,540 710,460 Q735,390 755,330 Q770,280 760,240"
+          stroke="url(#trunkGrad)" stroke-width="22" fill="none" stroke-linecap="round"/>
+    <path d="M655,610 Q685,530 715,450 Q738,385 758,325 Q772,278 763,240"
+          stroke="#3E2410" stroke-width="3.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- Trunk rings for wind-swept palm -->
+  <g stroke="#3E2410" stroke-width="1.3" fill="none" opacity="0.8">
+    <path d="M645,605 Q660,598 675,605"/>
+    <path d="M650,585 Q665,578 680,585"/>
+    <path d="M655,565 Q670,558 685,565"/>
+    <path d="M660,545 Q675,538 690,545"/>
+    <path d="M665,525 Q680,518 695,525"/>
+    <path d="M670,505 Q685,498 700,505"/>
+    <path d="M678,485 Q692,478 707,485"/>
+    <path d="M685,465 Q699,458 714,465"/>
+    <path d="M695,445 Q708,438 722,445"/>
+    <path d="M705,425 Q718,418 732,425"/>
+    <path d="M715,405 Q727,398 740,405"/>
+    <path d="M725,385 Q737,378 750,385"/>
+    <path d="M735,365 Q746,358 758,365"/>
+    <path d="M745,345 Q755,338 766,345"/>
+    <path d="M752,325 Q761,318 771,325"/>
+    <path d="M758,305 Q766,298 775,305"/>
+    <path d="M762,285 Q769,278 777,285"/>
+    <path d="M765,265 Q771,258 778,265"/>
+  </g>
+
+  <!-- Crown base -->
+  <ellipse cx="760" cy="235" rx="16" ry="10" fill="#4E7A2E"/>
+
+  <!-- WIND-SWEPT FRONDS (all leaning right) -->
+  <!-- Frond 1: Strong right -->
+  <g>
+    <path d="M760,235 Q820,200 880,180" stroke="#1B5E20" stroke-width="3" fill="none"/>
+    <path d="M760,235 Q830,185 880,180 Q835,210 760,235" fill="url(#frondGrad)" opacity="0.92"/>
+    <g stroke="#2E7D32" stroke-width="1.2" fill="none" opacity="0.85">
+      <path d="M785,222 L805,205"/>
+      <path d="M810,212 L832,195"/>
+      <path d="M835,202 L858,188"/>
+      <path d="M860,195 L878,185"/>
+      <path d="M785,228 L800,242"/>
+      <path d="M810,222 L828,235"/>
+      <path d="M835,215 L855,225"/>
+    </g>
+  </g>
+
+  <!-- Frond 2: Far right drooping -->
+  <g>
+    <path d="M760,238 Q820,270 870,340" stroke="#1B5E20" stroke-width="3" fill="none"/>
+    <path d="M760,238 Q830,255 870,340 Q815,280 760,238" fill="url(#frondGrad)" opacity="0.85"/>
+    <g stroke="#2E7D32" stroke-width="1.2" fill="none" opacity="0.8">
+      <path d="M790,252 L805,240"/>
+      <path d="M815,268 L832,255"/>
+      <path d="M840,288 L858,275"/>
+      <path d="M790,258 L800,278"/>
+      <path d="M815,278 L827,298"/>
+      <path d="M840,300 L852,320"/>
+    </g>
+  </g>
+
+  <!-- Frond 3: Slight left (fighting wind) -->
+  <g opacity="0.85">
+    <path d="M760,235 Q720,210 680,200" stroke="#1B5E20" stroke-width="3" fill="none"/>
+    <path d="M760,235 Q715,195 680,200 Q725,220 760,235" fill="url(#frondGrad2)" opacity="0.88"/>
+    <g stroke="#388E3C" stroke-width="1.2" fill="none" opacity="0.8">
+      <path d="M740,225 L725,210"/>
+      <path d="M720,218 L705,205"/>
+      <path d="M700,212 L688,202"/>
+      <path d="M740,232 L728,245"/>
+      <path d="M720,228 L708,240"/>
+    </g>
+  </g>
+
+  <!-- Frond 4: Up-right -->
+  <g>
+    <path d="M760,235 Q790,170 810,120" stroke="#1B5E20" stroke-width="3" fill="none"/>
+    <path d="M760,235 Q800,160 810,120 Q785,175 760,235" fill="url(#frondGrad2)" opacity="0.9"/>
+    <g stroke="#388E3C" stroke-width="1.2" fill="none" opacity="0.85">
+      <path d="M770,210 L758,192"/>
+      <path d="M780,185 L770,165"/>
+      <path d="M790,160 L782,140"/>
+      <path d="M775,218 L792,210"/>
+      <path d="M788,195 L805,185"/>
+      <path d="M798,170 L812,158"/>
+    </g>
+  </g>
+
+  <!-- Frond 5: Right horizontal low -->
+  <g>
+    <path d="M760,238 Q810,245 860,260" stroke="#1B5E20" stroke-width="3" fill="none"/>
+    <path d="M760,238 Q815,232 860,260 Q810,252 760,238" fill="#388E3C" opacity="0.88"/>
+    <g stroke="#2E7D32" stroke-width="1.2" fill="none" opacity="0.8">
+      <path d="M785,240 L800,228"/>
+      <path d="M810,242 L828,232"/>
+      <path d="M835,248 L852,240"/>
+      <path d="M785,248 L798,262"/>
+      <path d="M810,252 L825,265"/>
+    </g>
+  </g>
+
+  <!-- Frond 6: Back frond -->
+  <g opacity="0.7">
+    <path d="M760,232 Q800,205 840,195" stroke="#1B5E20" stroke-width="2.5" fill="none"/>
+    <path d="M760,232 Q805,195 840,195 Q805,215 760,232" fill="#2E7D32"/>
+  </g>
+
+  <!-- Small date cluster on wind-swept palm -->
+  <g>
+    <path d="M763,240 Q772,255 775,270" stroke="#5C3317" stroke-width="1.8" fill="none"/>
+    <path d="M775,270 L778,282" stroke="#5C3317" stroke-width="1" fill="none"/>
+    <path d="M775,270 L772,283" stroke="#5C3317" stroke-width="1" fill="none"/>
+    <ellipse cx="778" cy="286" rx="3.5" ry="5" fill="url(#dateGrad)"/>
+    <ellipse cx="772" cy="288" rx="3.5" ry="5" fill="url(#dateGrad)"/>
+    <ellipse cx="777" cy="284" rx="1" ry="1.8" fill="#F4A460" opacity="0.6"/>
+  </g>
+
+  <!-- ==================== YOUNG PALM (LEFT) ==================== -->
+  <g filter="url(#softShadow)">
+    <!-- Shorter, straighter trunk -->
+    <path d="M180,628 Q178,560 175,500 Q173,450 172,420"
+          stroke="url(#youngTrunkGrad)" stroke-width="16" fill="none" stroke-linecap="round"/>
+    <path d="M176,615 Q175,555 173,498 Q171,448 170,420"
+          stroke="#556B2F" stroke-width="2.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+  </g>
+
+  <!-- Young trunk texture (less pronounced) -->
+  <g stroke="#556B2F" stroke-width="1" fill="none" opacity="0.6">
+    <path d="M172,600 Q180,596 188,600"/>
+    <path d="M172,580 Q180,576 188,580"/>
+    <path d="M171,560 Q179,556 187,560"/>
+    <path d="M171,540 Q179,536 187,540"/>
+    <path d="M170,520 Q178,516 186,520"/>
+    <path d="M170,500 Q178,496 186,500"/>
+    <path d="M169,480 Q177,476 185,480"/>
+    <path d="M169,460 Q177,456 185,460"/>
+    <path d="M168,440 Q176,436 184,440"/>
+  </g>
+
+  <!-- Young palm crown -->
+  <ellipse cx="172" cy="418" rx="12" ry="8" fill="#6B9B3A"/>
+
+  <!-- YOUNG PALM FRONDS (fewer, smaller) -->
+  <!-- Frond 1: Right -->
+  <g>
+    <path d="M172,418 Q210,395 245,380" stroke="#2E7D32" stroke-width="2.5" fill="none"/>
+    <path d="M172,418 Q215,388 245,380 Q218,402 172,418" fill="url(#frondGrad2)" opacity="0.9"/>
+    <g stroke="#388E3C" stroke-width="1" fill="none" opacity="0.85">
+      <path d="M190,408 L205,395"/>
+      <path d="M210,400 L227,388"/>
+      <path d="M230,392 L245,383"/>
+      <path d="M190,412 L202,422"/>
+      <path d="M210,408 L224,417"/>
+    </g>
+  </g>
+
+  <!-- Frond 2: Left -->
+  <g>
+    <path d="M172,418 Q135,395 100,380" stroke="#2E7D32" stroke-width="2.5" fill="none"/>
+    <path d="M172,418 Q130,388 100,380 Q135,402 172,418" fill="url(#frondGrad2)" opacity="0.9"/>
+    <g stroke="#388E3C" stroke-width="1" fill="none" opacity="0.85">
+      <path d="M155,408 L140,395"/>
+      <path d="M135,400 L118,388"/>
+      <path d="M115,392 L100,383"/>
+      <path d="M155,412 L143,422"/>
+      <path d="M135,408 L121,417"/>
+    </g>
+  </g>
+
+  <!-- Frond 3: Up-right -->
+  <g>
+    <path d="M172,418 Q195,375 210,340" stroke="#2E7D32" stroke-width="2.5" fill="none"/>
+    <path d="M172,418 Q200,370 210,340 Q192,378 172,418" fill="url(#frondGrad)" opacity="0.92"/>
+    <g stroke="#2E7D32" stroke-width="1" fill="none" opacity="0.85">
+      <path d="M180,400 L172,385"/>
+      <path d="M188,380 L182,365"/>
+      <path d="M195,362 L190,348"/>
+      <path d="M185,405 L198,398"/>
+      <path d="M195,388 L208,378"/>
+    </g>
+  </g>
+
+  <!-- Frond 4: Up-left -->
+  <g>
+    <path d="M172,418 Q148,375 135,340" stroke="#2E7D32" stroke-width="2.5" fill="none"/>
+    <path d="M172,418 Q143,370 135,340 Q152,378 172,418" fill="url(#frondGrad)" opacity="0.92"/>
+    <g stroke="#2E7D32" stroke-width="1" fill="none" opacity="0.85">
+      <path d="M164,400 L172,385"/>
+      <path d="M156,380 L162,365"/>
+      <path d="M148,362 L153,348"/>
+      <path d="M158,405 L145,398"/>
+      <path d="M148,388 L135,378"/>
+    </g>
+  </g>
+
+  <!-- Frond 5: Up center -->
+  <g>
+    <path d="M172,418 Q170,380 168,350" stroke="#2E7D32" stroke-width="2.5" fill="none"/>
+    <path d="M172,418 Q165,378 168,350 Q178,382 172,418" fill="#43A047" opacity="0.9"/>
+    <g stroke="#2E7D32" stroke-width="1" fill="none" opacity="0.85">
+      <path d="M170,400 L160,390"/>
+      <path d="M169,380 L159,368"/>
+      <path d="M168,362 L160,352"/>
+      <path d="M174,400 L183,390"/>
+      <path d="M175,380 L184,368"/>
+    </g>
+  </g>
+
+  <!-- ==================== SPROUTING PALM (FAR RIGHT) ==================== -->
+  <!-- Just emerging from soil -->
+  <g>
+    <!-- Small mound of soil -->
+    <ellipse cx="820" cy="640" rx="18" ry="8" fill="#8B7355" opacity="0.8"/>
+    <ellipse cx="820" cy="638" rx="15" ry="6" fill="#A0826B" opacity="0.9"/>
+    
+    <!-- Tiny emerging shoot -->
+    <path d="M820,638 Q819,625 818,615" stroke="#6B9B3A" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <!-- First tiny leaves (V-shape) -->
+    <path d="M818,615 Q812,605 808,598" stroke="#7CB342" stroke-width="2.5" fill="#8BC34A" opacity="0.9"/>
+    <path d="M818,615 Q824,605 828,598" stroke="#7CB342" stroke-width="2.5" fill="#8BC34A" opacity="0.9"/>
+    
+    <!-- Tiny central spike -->
+    <path d="M818,615 Q818,608 818,602" stroke="#9ACD32" stroke-width="2" fill="none" stroke-linecap="round"/>
+    
+    <!-- Soil texture -->
+    <circle cx="815" cy="642" r="1.5" fill="#6B5442" opacity="0.6"/>
+    <circle cx="825" cy="641" r="1.2" fill="#6B5442" opacity="0.6"/>
+    <circle cx="818" cy="644" r="1" fill="#6B5442" opacity="0.6"/>
+  </g>
+
+  <!-- ==================== GROUND VEGETATION ==================== -->
+
+  <!-- PAPYRUS REEDS (left) -->
+  <g>
+    <path d="M250,615 Q248,550 245,480" stroke="#558B2F" stroke-width="2.5" fill="none"/>
+    <path d="M265,618 Q267,555 270,488" stroke="#689F38" stroke-width="2.5" fill="none"/>
+    <path d="M235,613 Q230,548 225,485" stroke="#558B2F" stroke-width="2" fill="none"/>
+    <g fill="#7CB342" opacity="0.9">
+      <ellipse cx="245" cy="478" rx="12" ry="8"/>
+      <ellipse cx="245" cy="472" rx="15" ry="5"/>
+      <ellipse cx="270" cy="486" rx="13" ry="8"/>
+      <ellipse cx="270" cy="480" rx="16" ry="5"/>
+      <ellipse cx="225" cy="483" rx="11" ry="7"/>
+      <ellipse cx="225" cy="478" rx="13" ry="5"/>
+    </g>
+    <g stroke="#8BC34A" stroke-width="0.7" fill="none" opacity="0.8">
+      <path d="M245,470 L235,462"/>
+      <path d="M245,470 L240,460"/>
+      <path d="M245,470 L250,460"/>
+      <path d="M245,470 L255,462"/>
+      <path d="M270,478 L260,470"/>
+      <path d="M270,478 L265,468"/>
+      <path d="M270,478 L275,468"/>
+      <path d="M270,478 L280,470"/>
+    </g>
+  </g>
+
+  <!-- PAPYRUS REEDS (right) -->
+  <g>
+    <path d="M580,615 Q585,550 590,485" stroke="#558B2F" stroke-width="2.5" fill="none"/>
+    <path d="M595,618 Q600,553 605,490" stroke="#689F38" stroke-width="2.5" fill="none"/>
+    <path d="M565,613 Q562,548 558,483" stroke="#558B2F" stroke-width="2" fill="none"/>
+    <g fill="#7CB342" opacity="0.9">
+      <ellipse cx="590" cy="483" rx="12" ry="8"/>
+      <ellipse cx="590" cy="477" rx="15" ry="5"/>
+      <ellipse cx="605" cy="488" rx="12" ry="8"/>
+      <ellipse cx="605" cy="482" rx="14" ry="5"/>
+      <ellipse cx="558" cy="481" rx="11" ry="7"/>
+      <ellipse cx="558" cy="476" rx="13" ry="5"/>
+    </g>
+    <g stroke="#8BC34A" stroke-width="0.7" fill="none" opacity="0.8">
+      <path d="M590,475 L580,467"/>
+      <path d="M590,475 L585,465"/>
+      <path d="M590,475 L595,465"/>
+      <path d="M590,475 L600,467"/>
+      <path d="M605,480 L595,472"/>
+      <path d="M605,480 L600,470"/>
+      <path d="M605,480 L610,470"/>
+      <path d="M605,480 L615,472"/>
+    </g>
+  </g>
+
+  <!-- CATTAILS -->
+  <g>
+    <path d="M320,615 Q318,545 315,470" stroke="#558B2F" stroke-width="2" fill="none"/>
+    <path d="M500,615 Q503,548 507,475" stroke="#558B2F" stroke-width="2" fill="none"/>
+    <ellipse cx="315" cy="480" rx="5" ry="18" fill="#5D4037"/>
+    <ellipse cx="315" cy="480" rx="4" ry="16" fill="#6D4C41"/>
+    <ellipse cx="507" cy="485" rx="5" ry="18" fill="#5D4037"/>
+    <ellipse cx="507" cy="485" rx="4" ry="16" fill="#6D4C41"/>
+    <path d="M315,462 L315,453" stroke="#8BC34A" stroke-width="1.5" fill="none"/>
+    <path d="M507,467 L507,458" stroke="#8BC34A" stroke-width="1.5" fill="none"/>
+    <path d="M318,560 Q300,535 285,528" stroke="#558B2F" stroke-width="2" fill="none"/>
+    <path d="M503,560 Q520,535 535,528" stroke="#558B2F" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- GRASS TUFTS -->
+  <g stroke="#558B2F" stroke-width="2" fill="none">
+    <path d="M210,640 Q205,620 200,610"/>
+    <path d="M213,640 Q218,618 223,608"/>
+    <path d="M215,640 Q210,624 207,615" stroke="#689F38"/>
+    <path d="M430,638 Q435,618 440,608"/>
+    <path d="M427,638 Q422,616 418,606"/>
+    <path d="M432,638 Q438,620 443,610" stroke="#689F38"/>
+    <path d="M620,640 Q625,620 630,610"/>
+    <path d="M617,640 Q612,618 608,608"/>
+    <path d="M622,640 Q628,622 633,612" stroke="#689F38"/>
+  </g>
+
+  <!-- LOW BUSHES -->
+  <g>
+    <ellipse cx="140" cy="645" rx="30" ry="15" fill="#4CAF50" opacity="0.8"/>
+    <ellipse cx="135" cy="640" rx="23" ry="11" fill="#66BB6A" opacity="0.9"/>
+    <circle cx="130" cy="638" r="2.5" fill="#E91E63" opacity="0.8"/>
+    <circle cx="142" cy="636" r="2" fill="#E91E63" opacity="0.8"/>
+    
+    <ellipse cx="700" cy="642" rx="28" ry="14" fill="#4CAF50" opacity="0.8"/>
+    <ellipse cx="705" cy="637" rx="21" ry="10" fill="#66BB6A" opacity="0.9"/>
+    <circle cx="700" cy="635" r="2.5" fill="#FFC107" opacity="0.9"/>
+    <circle cx="712" cy="633" r="2" fill="#FFC107" opacity="0.9"/>
+  </g>
+
+  <!-- WATER LILIES -->
+  <g>
+    <ellipse cx="380" cy="612" rx="12" ry="6" fill="#2E7D32" opacity="0.8"/>
+    <ellipse cx="480" cy="618" rx="10" ry="5" fill="#388E3C" opacity="0.8"/>
+    <ellipse cx="430" cy="623" rx="11" ry="5.5" fill="#2E7D32" opacity="0.75"/>
+    <path d="M380,612 L380,607" stroke="#0277BD" stroke-width="1.5" fill="none"/>
+    <path d="M480,618 L480,614" stroke="#0277BD" stroke-width="1.5" fill="none"/>
+    <circle cx="385" cy="610" r="3" fill="#FFFFFF" opacity="0.95"/>
+    <circle cx="385" cy="610" r="1.5" fill="#FFEB3B"/>
+  </g>
+
+  <!-- FALLEN DATES -->
+  <ellipse cx="410" cy="638" rx="3" ry="4" fill="#8B4513" opacity="0.8"/>
+  <ellipse cx="425" cy="642" rx="2.5" ry="3.5" fill="#A0522D" opacity="0.8"/>
+  <ellipse cx="360" cy="640" rx="2.5" ry="3.5" fill="#8B4513" opacity="0.7"/>
+
+  <!-- SMALL ROCKS -->
+  <ellipse cx="300" cy="645" rx="6" ry="3" fill="#9E9E9E" opacity="0.7"/>
+  <ellipse cx="305" cy="644" rx="4" ry="2" fill="#BDBDBD" opacity="0.7"/>
+  <ellipse cx="550" cy="648" rx="5" ry="2.5" fill="#9E9E9E" opacity="0.7"/>
+</svg>
