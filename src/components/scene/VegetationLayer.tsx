@@ -141,38 +141,38 @@ function FallenDate() {
 }
 
 export function VegetationLayer() {
-  // Static layout mapping modeled directly from mockup viewBox percentages
+  // Static layout mapping shifted down by 8% to align with lowered horizon
   const elements = [
     // Grass Tufts
-    { key: 'grass-1', comp: <GrassTuft />, x: 21, y: 75 },
-    { key: 'grass-2', comp: <GrassTuft />, x: 43, y: 76 },
-    { key: 'grass-3', comp: <GrassTuft />, x: 62, y: 75 },
+    { key: 'grass-1', comp: <GrassTuft />, x: 21, y: 83 },
+    { key: 'grass-2', comp: <GrassTuft />, x: 43, y: 84 },
+    { key: 'grass-3', comp: <GrassTuft />, x: 62, y: 83 },
 
     // Low Bushes
-    { key: 'bush-1', comp: <LowBush type="pink" />, x: 14, y: 78 },
-    { key: 'bush-2', comp: <LowBush type="yellow" />, x: 70, y: 77 },
+    { key: 'bush-1', comp: <LowBush type="pink" />, x: 14, y: 86 },
+    { key: 'bush-2', comp: <LowBush type="yellow" />, x: 70, y: 85 },
 
     // Small Rocks
-    { key: 'rock-1', comp: <SmallRocks />, x: 30, y: 76 },
-    { key: 'rock-2', comp: <SmallRocks />, x: 55, y: 77 },
+    { key: 'rock-1', comp: <SmallRocks />, x: 30, y: 84 },
+    { key: 'rock-2', comp: <SmallRocks />, x: 55, y: 85 },
 
     // Reeds
-    { key: 'reed-left', comp: <ReedCluster />, x: 25, y: 67 },
-    { key: 'reed-right', comp: <ReedCluster />, x: 58, y: 67 },
+    { key: 'reed-left', comp: <ReedCluster />, x: 25, y: 75 },
+    { key: 'reed-right', comp: <ReedCluster />, x: 58, y: 75 },
 
     // Cattails
-    { key: 'cattail-left', comp: <Cattail />, x: 32, y: 66 },
-    { key: 'cattail-right', comp: <Cattail />, x: 50, y: 66 },
+    { key: 'cattail-left', comp: <Cattail />, x: 32, y: 74 },
+    { key: 'cattail-right', comp: <Cattail />, x: 50, y: 74 },
 
     // Water Lilies
-    { key: 'lily-1', comp: <WaterLily />, x: 38, y: 63 },
-    { key: 'lily-2', comp: <WaterLily />, x: 48, y: 64 },
-    { key: 'lily-3', comp: <WaterLily />, x: 43, y: 65 },
+    { key: 'lily-1', comp: <WaterLily />, x: 38, y: 71 },
+    { key: 'lily-2', comp: <WaterLily />, x: 48, y: 72 },
+    { key: 'lily-3', comp: <WaterLily />, x: 43, y: 73 },
 
     // Fallen Dates
-    { key: 'date-1', comp: <FallenDate />, x: 41, y: 75 },
-    { key: 'date-2', comp: <FallenDate />, x: 42.5, y: 75.5 },
-    { key: 'date-3', comp: <FallenDate />, x: 36, y: 74.5 },
+    { key: 'date-1', comp: <FallenDate />, x: 41, y: 83 },
+    { key: 'date-2', comp: <FallenDate />, x: 42.5, y: 83.5 },
+    { key: 'date-3', comp: <FallenDate />, x: 36, y: 82.5 },
   ]
 
   return (

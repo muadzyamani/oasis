@@ -44,7 +44,7 @@ export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: Atm
       <motion.div
         style={{
           position: 'absolute',
-          bottom: '28%',
+          bottom: '22%',
           left: '50%',
           transform: 'translate(-50%, 50%)',
           width: '60%',
@@ -71,7 +71,7 @@ export function AtmosphereLayer({ sessionActive, sessionProgress, isBreak }: Atm
       <motion.div
         style={{
           position: 'absolute',
-          bottom: '28%',
+          bottom: '22%',
           left: '50%',
           transform: 'translateX(-50%)',
           width: 80, height: 80,

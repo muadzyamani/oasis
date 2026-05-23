@@ -16,23 +16,23 @@ export interface GrowthEvent {
 
 // Smart placement zones per element type (x,y as % of scene)
 const ZONES: Record<OasisElementType, Array<{ x: number; y: number }>> = {
-  sprout:    [{ x: 48, y: 75 }, { x: 53, y: 74 }, { x: 43, y: 76 }, { x: 57, y: 75 }],
-  flower:    [{ x: 32, y: 73 }, { x: 66, y: 72 }, { x: 42, y: 75 }, { x: 58, y: 74 }, { x: 27, y: 73 }, { x: 72, y: 72 }],
-  reed:      [{ x: 22, y: 67 }, { x: 78, y: 66 }, { x: 17, y: 68 }, { x: 83, y: 67 }],
+  sprout:    [{ x: 48, y: 83 }, { x: 53, y: 82 }, { x: 43, y: 84 }, { x: 57, y: 83 }],
+  flower:    [{ x: 32, y: 81 }, { x: 66, y: 80 }, { x: 42, y: 83 }, { x: 58, y: 82 }, { x: 27, y: 81 }, { x: 72, y: 80 }],
+  reed:      [{ x: 22, y: 75 }, { x: 78, y: 74 }, { x: 17, y: 76 }, { x: 83, y: 75 }],
   palm: [
-    { x: 28, y: 61 }, // Left shore
-    { x: 72, y: 61 }, // Right shore
-    { x: 20, y: 62 }, // Far left shore
-    { x: 80, y: 62 }, // Far right shore
-    { x: 35, y: 60 }, // Back left shoreline
-    { x: 65, y: 60 }, // Back right shoreline
-    { x: 14, y: 63 }, // Deep left shore
-    { x: 86, y: 63 }  // Deep right shore
+    { x: 28, y: 69 }, // Left shore
+    { x: 72, y: 69 }, // Right shore
+    { x: 20, y: 70 }, // Far left shore
+    { x: 80, y: 70 }, // Far right shore
+    { x: 35, y: 68 }, // Back left shoreline
+    { x: 65, y: 68 }, // Back right shoreline
+    { x: 14, y: 71 }, // Deep left shore
+    { x: 86, y: 71 }  // Deep right shore
   ],
-  lantern:   [{ x: 50, y: 65 }, { x: 36, y: 64 }, { x: 64, y: 66 }, { x: 50, y: 62 }],
-  lily:      [{ x: 40, y: 64 }, { x: 55, y: 63 }, { x: 47, y: 65 }, { x: 52, y: 62 }],
-  waterfall: [{ x: 12, y: 58 }, { x: 88, y: 57 }],
-  firefly:   [{ x: 30, y: 54 }, { x: 70, y: 52 }, { x: 45, y: 57 }, { x: 60, y: 51 }, { x: 25, y: 55 }, { x: 75, y: 53 }],
+  lantern:   [{ x: 50, y: 73 }, { x: 36, y: 72 }, { x: 64, y: 74 }, { x: 50, y: 70 }],
+  lily:      [{ x: 40, y: 72 }, { x: 55, y: 71 }, { x: 47, y: 73 }, { x: 52, y: 70 }],
+  waterfall: [{ x: 12, y: 66 }, { x: 88, y: 65 }],
+  firefly:   [{ x: 30, y: 62 }, { x: 70, y: 60 }, { x: 45, y: 65 }, { x: 60, y: 59 }, { x: 25, y: 63 }, { x: 75, y: 61 }],
 }
 
 const TIER_THRESHOLDS = [0, 25, 120, 480, 1440, 4320]

@@ -52,7 +52,7 @@ export function WaterLayer({ timeOfDay, sessionActive, tier }: WaterLayerProps) 
   const palette = WATER_PALETTES[timeOfDay]
 
   return (
-    <div className="absolute left-0 right-0" style={{ top: '60%', height: '12%', zIndex: 3 }}>
+    <div className="absolute left-0 right-0" style={{ top: '68%', height: '12%', zIndex: 3 }}>
       {/* Responsive SVG Container for Redesigned Water Feature */}
       <svg
         className="absolute left-1/2 -translate-x-1/2"
